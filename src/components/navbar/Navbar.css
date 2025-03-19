@@ -1,0 +1,64 @@
+.navtop {
+  background-color: #170603;
+  padding: 12px 0;
+  color: #fafafa;
+  text-align: center;
+}
+.navtop .container {
+  display: flex;
+  justify-content: end;
+  gap: 400px;
+}
+.mainNav {
+  border-bottom: 0.5px solid #b3b3b3;
+}
+.mainNav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 16px;
+}
+.mainNav .container .navLinks {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+}
+.mainNav .container .navLinks a {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration: none;
+  color: #000;
+}
+.mainNav .container .navLinks a.active {
+  border-bottom: #808080 solid 1px;
+}
+.navBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.navBtns form {
+  display: flex;
+  justify-content: start;
+  gap: 24px;
+  margin-right: 8px;
+  background-color: #f5f5f5;
+  padding: 7px 12px 7px 20px;
+  border-radius: 5px;
+}
+.navBtns form input {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+.navBtns button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.navBtns i{
+    font-size: 20px;
+}
