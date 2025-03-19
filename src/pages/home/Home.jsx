@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import { BiJoystick, BiSolidHomeAlt2 } from "react-icons/bi";
 import { CiDesktop, CiMobile1 } from "react-icons/ci";
@@ -6,42 +6,67 @@ import { BsSmartwatch } from "react-icons/bs";
 import { IoCameraOutline } from "react-icons/io5";
 import { PiHeadphonesBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import ProductCard from "../../components/productCard/ProductCard";
 function Home() {
+  const [products, setProducts] = useState(null);
+  const [categories, setCategories] = useState(null);
+  const [productCount, setProductCount] = useState(4);
+
+  // Getdata function
+  const getData = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(
+      "https://ecommercev01.pythonanywhere.com/product/list/",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        setProducts(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    getData();
+    getCategories();
+  }, []);
+
+  // Getcategories function
+
+  const getCategories = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(
+      "https://ecommercev01.pythonanywhere.com/product/categories/",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        setCategories(result);
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="home">
       <header>
         <div className="hero">
           <div className="container">
             <div className="heroFilter">
-              <div className="row">
-                <p>Woman’s Fashion</p>
-                <i className="fas fa-chevron-right"></i>
-              </div>
-              <div className="row">
-                <p>Men’s Fashion</p>
-                <i className="fas fa-chevron-right"></i>
-              </div>
-              <div className="row">
-                <p>Electronics</p>
-              </div>
-              <div className="row">
-                <p>Home & Lifestyle</p>
-              </div>
-              <div className="row">
-                <p>Medicine</p>
-              </div>
-              <div className="row">
-                <p>Sports & Outdoor</p>
-              </div>
-              <div className="row">
-                <p>Baby’s & Toys</p>
-              </div>
-              <div className="row">
-                <p>Groceries & Pets</p>
-              </div>
-              <div className="row">
-                <p>Health & Beauty</p>
-              </div>
+              {categories?.map((category) => {
+                return (
+                  <div className="row">
+                    <p>{category.title}</p>
+                    <i className="fas fa-chevron-right"></i>
+                  </div>
+                );
+              })}
             </div>
             <div className="heroSlider">
               <div className="heroSlide">
@@ -96,121 +121,25 @@ function Home() {
               </div>
             </div>
             <div className="productsBlock">
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
+              {products?.map((product, index) => {
+                if (index < productCount) {
+                  return <ProductCard product={product} />;
+                } else {
+                  return;
+                }
+              })}
             </div>
             <div className="view">
-              <button className="viewBtn">View All Products</button>
+              <button
+                onClick={() => {
+                  productCount == 4
+                    ? setProductCount(10000)
+                    : setProductCount(4);
+                }}
+                className="viewBtn"
+              >
+                {productCount == 4 ? "View All Products" : "View less"}
+              </button>
             </div>
           </div>
         </section>
