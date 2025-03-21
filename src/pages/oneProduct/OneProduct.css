@@ -132,6 +132,7 @@
   display: flex;
   align-items: center;
   gap: 24px;
+  cursor: pointer;
 }
 .selectSize {
   display: flex;
@@ -210,6 +211,17 @@
   background-color: transparent;
   font-size: 20px;
   border: 1px solid #808080;
+}
+.likeBtn i.liked{
+  color: #DB4444;
+}
+.readMoreBtn{
+  border: none;
+  background-color: transparent;
+  color: blue;
+}
+.noVis{
+  display: none;
 }
 .freeDelivery {
   display: flex;

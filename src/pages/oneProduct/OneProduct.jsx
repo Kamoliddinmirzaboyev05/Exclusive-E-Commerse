@@ -4,7 +4,19 @@ import { useParams } from "react-router-dom";
 function OneProduct() {
   const { id } = useParams();
   const [oneProductData, setOneProductData] = useState(null);
+  const [productSize, setProductSize] = useState("M");
+  const [productCount, setProductCount] = useState(1);
+  const [productLiked, setProductLiked] = useState(false);
+  const [productColor, setProductColor] = useState("blue");
+  const [descrLength, setDescrLength] = useState(150);
   // getOneProduct function
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   const getOneProduct = () => {
     const requestOptions = {
       method: "GET",
@@ -42,19 +54,28 @@ function OneProduct() {
               <div className="leftSide">
                 <div className="itemImgs">
                   <div className="itemImg">
-                    <img  src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[0]?.file}`} alt="" />
-                  </div>
-                  <div className="itemImg">
                     <img
-                       src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[1]?.file}`}
+                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[0]?.file}`}
                       alt=""
                     />
                   </div>
                   <div className="itemImg">
-                    <img  src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[2]?.file}`} alt="" />
+                    <img
+                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[1]?.file}`}
+                      alt=""
+                    />
                   </div>
                   <div className="itemImg">
-                    <img  src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[3]?.file}`} alt="" />
+                    <img
+                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[2]?.file}`}
+                      alt=""
+                    />
+                  </div>
+                  <div className="itemImg">
+                    <img
+                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[3]?.file}`}
+                      alt=""
+                    />
                   </div>
                 </div>
                 <div className="mainImg">
@@ -75,43 +96,135 @@ function OneProduct() {
                   <p className="stock">In Stock</p>
                 </div>
                 <p className="price">{oneProductData?.price} UZS</p>
-                <p className="productInfo">{oneProductData?.description}</p>
+                <p className="productInfo">
+                  {String(oneProductData?.description).length > descrLength
+                    ? String(oneProductData?.description).slice(0, descrLength)
+                    : oneProductData?.description}{" "}
+                  <button
+                    onClick={() => {
+                      setDescrLength(5000);
+                    }}
+                    className={
+                      String(oneProductData?.description).length > descrLength
+                        ? "readMoreBtn"
+                        : "noVis"
+                    }
+                  >
+                    ... Read more
+                  </button>
+                  <button
+                    onClick={() => {
+                      setDescrLength(150);
+                    }}
+                    className={descrLength > 150 ? "readMoreBtn" : "noVis"}
+                  >
+                    Read less
+                  </button>
+                </p>
                 <div className="colours">
                   <p>Colours: </p>
-                  <div className="selectColor">
-                    <div className="color active blueColor"></div>
-                    <div className="color redColor"></div>
+                  <div className="selectColor" >
+                    <div
+                      onClick={() => {
+                        setProductColor("blue");
+                      }}
+                      className={
+                        productColor == "blue"
+                          ? "color active blueColor"
+                          : "color blueColor"
+                      }
+                    ></div>
+                    <div
+                      onClick={() => {
+                        setProductColor("red");
+                      }}
+                      className={
+                        productColor == "red"
+                          ? "color active redColor"
+                          : "color redColor"
+                      }
+                    ></div>
                   </div>
                 </div>
                 <div className="size">
                   <p>Size: </p>
                   <div className="selectSize">
-                    <span>
+                    <span
+                      onClick={() => {
+                        setProductSize("XS");
+                      }}
+                      className={productSize == "XS" ? "active" : "span"}
+                    >
                       <p>XS</p>
                     </span>
-                    <span>
+                    <span
+                      onClick={() => {
+                        setProductSize("S");
+                      }}
+                      className={productSize == "S" ? "active" : "span"}
+                    >
                       <p>S</p>
                     </span>
-                    <span className="active">
+                    <span
+                      onClick={() => {
+                        setProductSize("M");
+                      }}
+                      className={productSize == "M" ? "active" : "span"}
+                    >
                       <p>M</p>
                     </span>
-                    <span>
+                    <span
+                      onClick={() => {
+                        setProductSize("L");
+                      }}
+                      className={productSize == "L" ? "active" : "span"}
+                    >
                       <p>L</p>
                     </span>
-                    <span>
+                    <span
+                      onClick={() => {
+                        setProductSize("XL");
+                      }}
+                      className={productSize == "XL" ? "active" : "span"}
+                    >
                       <p>XL</p>
                     </span>
                   </div>
                 </div>
                 <div className="mainBtns">
                   <div className="counter">
-                    <button>-</button>
-                    <p className="countValue">2</p>
-                    <button>+</button>
+                    <button
+                      onClick={() => {
+                        productCount > 1
+                          ? setProductCount(productCount - 1)
+                          : productCount;
+                      }}
+                    >
+                      -
+                    </button>
+                    <p className="countValue">{productCount}</p>
+                    <button
+                      onClick={() => {
+                        setProductCount(productCount + 1);
+                      }}
+                    >
+                      +
+                    </button>
                   </div>
                   <button className="buyNowBtn ">Buy Now</button>
-                  <button className="likeBtn">
-                    <i className="fa-regular fa-heart"></i>
+                  <button
+                    onClick={() => {
+                      setProductLiked(!productLiked);
+                    }}
+                    className="likeBtn"
+                  >
+                    <i
+                      className={
+                        productLiked
+                          ? "fa-solid fa-heart liked"
+                          : "fa-regular fa-heart"
+                      }
+                    ></i>
                   </button>
                 </div>
                 <div className="deliveryService">
