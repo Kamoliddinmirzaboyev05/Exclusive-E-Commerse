@@ -72,10 +72,10 @@ function Home() {
       <header>
         <div className="hero">
           <div className="container">
-            <div className="heroFilter">
+            <div className="heroFilter" >
               {categories?.map((category) => {
                 return (
-                  <div className="row">
+                  <div key={category.id} className="row">
                     <p>{category.title}</p>
                     <i className="fas fa-chevron-right"></i>
                   </div>
@@ -199,7 +199,7 @@ function Home() {
             <div className="productsBlock">
               {products?.map((product, index) => {
                 if (index < productCount) {
-                  return <ProductCard product={product} />;
+                  return <ProductCard key={product.id} product={product} />;
                 } else {
                   return;
                 }
