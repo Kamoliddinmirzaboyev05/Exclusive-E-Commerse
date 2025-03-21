@@ -24,7 +24,7 @@ function ProductCard({ product }) {
           <button className="addCartBtn">Add To Cart</button>
         </div>
         <div className="productData">
-          <h2>{String(product.title).slice(0, 30)}...</h2>
+          <h2>{String(product.title).slice(0, 15)}...</h2>
           <div className="price">
             <p className="newPrice">${product.price}</p>
             <p className="lastPrice">$160</p>

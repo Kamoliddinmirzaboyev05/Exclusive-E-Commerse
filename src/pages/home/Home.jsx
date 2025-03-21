@@ -20,9 +20,11 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 function Home() {
+
   const [products, setProducts] = useState(null);
   const [categories, setCategories] = useState(null);
   const [productCount, setProductCount] = useState(4);
+  
 
   // Getdata function
   const getData = () => {
