@@ -143,6 +143,7 @@ function Home() {
             </div>
           </div>
         </section>
+        
         <section className="byCategory">
           <div className="container">
             <div className="sectionType">
@@ -178,6 +179,7 @@ function Home() {
             </div>
           </div>
         </section>
+
         <section className="bestSelling">
           <div className="container">
             <div className="sectionType">
@@ -185,7 +187,7 @@ function Home() {
               <p>This month</p>
             </div>
             <div className="sectionHead">
-              <h2 className="sectionTitle">Browse By Category</h2>
+              <h2 className="sectionTitle">Best Selling Products</h2>
               <button className="viewBtn">View All</button>
             </div>
             <div className="productsBlock">
