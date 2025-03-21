@@ -42,19 +42,19 @@ function OneProduct() {
               <div className="leftSide">
                 <div className="itemImgs">
                   <div className="itemImg">
-                    <img  src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[0]?.file}`} alt="" />
+                    <img src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[0]?.file}`} alt="" />
                   </div>
                   <div className="itemImg">
                     <img
-                       src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[1]?.file}`}
+                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[1]?.file}`}
                       alt=""
                     />
                   </div>
                   <div className="itemImg">
-                    <img  src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[2]?.file}`} alt="" />
+                    <img src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[2]?.file}`} alt="" />
                   </div>
                   <div className="itemImg">
-                    <img  src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[3]?.file}`} alt="" />
+                    <img src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[3]?.file}`} alt="" />
                   </div>
                 </div>
                 <div className="mainImg">

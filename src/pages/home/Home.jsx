@@ -7,6 +7,18 @@ import { IoCameraOutline } from "react-icons/io5";
 import { PiHeadphonesBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+// import './styles.css';
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
 function Home() {
   const [products, setProducts] = useState(null);
   const [categories, setCategories] = useState(null);
@@ -54,6 +66,8 @@ function Home() {
       .catch((error) => console.error(error));
   };
   return (
+
+
     <div className="home">
       <header>
         <div className="hero">
@@ -68,11 +82,73 @@ function Home() {
                 );
               })}
             </div>
-            <div className="heroSlider">
-              <div className="heroSlide">
-                <img src="/public/heroimg.png" alt="" />
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={30}
+              loop={true}
+              autoplay={{
+                delay: 1500,
+                disableOnInteraction: true,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              modules={[Autoplay, Pagination, Navigation]}
+              className="mySwiper"
+            ><div className="heroSlider">
+
+                <SwiperSlide>
+                  <div className="heroSlide">
+                    <img src="/public/heroimg.png" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="heroSlide">
+                    <img src="/public/heroimg.png" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="heroSlide">
+                    <img src="/public/heroimg.png" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="heroSlide">
+                    <img src="/public/heroimg.png" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="heroSlide">
+                    <img src="/public/heroimg.png" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="heroSlide">
+                    <img src="/public/heroimg.png" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="heroSlide">
+                    <img src="/public/heroimg.png" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="heroSlide">
+                    <img src="/public/heroimg.png" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="heroSlide">
+                    <img src="/public/heroimg.png" alt="" />
+                  </div>
+                </SwiperSlide>
               </div>
-            </div>
+            </Swiper>
+
+
+
+
           </div>
         </div>
       </header>
@@ -143,7 +219,7 @@ function Home() {
             </div>
           </div>
         </section>
-        
+
         <section className="byCategory">
           <div className="container">
             <div className="sectionType">
