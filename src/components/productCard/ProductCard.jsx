@@ -30,7 +30,7 @@ function ProductCard({ product }) {
             <p className="lastPrice">$160</p>
           </div>
           <div className="productRate">
-            <img src="/public/stars].svg" alt="" />
+            <img src="/stars].svg" alt="" />
             <p>(88)</p>
           </div>
         </div>

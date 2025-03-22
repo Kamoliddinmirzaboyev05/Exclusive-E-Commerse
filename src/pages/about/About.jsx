@@ -35,7 +35,7 @@ function About() {
             </p>
           </div>
           <div className="storyImg">
-            <img src="/public/aboutimg.png" alt="" />
+            <img src="/aboutimg.png" alt="" />
           </div>
         </div>
         <div className="aboutUsBlock">
@@ -83,7 +83,7 @@ function About() {
               {" "}
               <div className="outWorkerBox">
                 <div className="workerImg">
-                  <img src="/public/worker1.png" alt="" />
+                  <img src="/worker1.png" alt="" />
                 </div>
                 <div className="workerData">
                   <h2>Tom Cruise</h2>
@@ -99,7 +99,7 @@ function About() {
             <SwiperSlide>
               <div className="outWorkerBox">
                 <div className="workerImg">
-                  <img src="/public/worker2.png" alt="" />
+                  <img src="/worker2.png" alt="" />
                 </div>
                 <div className="workerData">
                   <h2>Emma Watson</h2>
@@ -116,7 +116,7 @@ function About() {
               {" "}
               <div className="outWorkerBox">
                 <div className="workerImg">
-                  <img src="/public/worker3.png" alt="" />
+                  <img src="/worker3.png" alt="" />
                 </div>
                 <div className="workerData">
                   <h2>Will Smith</h2>
@@ -133,7 +133,7 @@ function About() {
               {" "}
               <div className="outWorkerBox">
                 <div className="workerImg">
-                  <img src="/public/worker1.png" alt="" />
+                  <img src="/worker1.png" alt="" />
                 </div>
                 <div className="workerData">
                   <h2>Tom Cruise</h2>
@@ -149,7 +149,7 @@ function About() {
             <SwiperSlide>
               <div className="outWorkerBox">
                 <div className="workerImg">
-                  <img src="/public/worker2.png" alt="" />
+                  <img src="/worker2.png" alt="" />
                 </div>
                 <div className="workerData">
                   <h2>Emma Watson</h2>
@@ -166,7 +166,7 @@ function About() {
               {" "}
               <div className="outWorkerBox">
                 <div className="workerImg">
-                  <img src="/public/worker3.png" alt="" />
+                  <img src="/worker3.png" alt="" />
                 </div>
                 <div className="workerData">
                   <h2>Will Smith</h2>
@@ -183,7 +183,7 @@ function About() {
               {" "}
               <div className="outWorkerBox">
                 <div className="workerImg">
-                  <img src="/public/worker1.png" alt="" />
+                  <img src="/worker1.png" alt="" />
                 </div>
                 <div className="workerData">
                   <h2>Tom Cruise</h2>
@@ -199,7 +199,7 @@ function About() {
             <SwiperSlide>
               <div className="outWorkerBox">
                 <div className="workerImg">
-                  <img src="/public/worker2.png" alt="" />
+                  <img src="/worker2.png" alt="" />
                 </div>
                 <div className="workerData">
                   <h2>Emma Watson</h2>
@@ -216,7 +216,7 @@ function About() {
               {" "}
               <div className="outWorkerBox">
                 <div className="workerImg">
-                  <img src="/public/worker3.png" alt="" />
+                  <img src="/worker3.png" alt="" />
                 </div>
                 <div className="workerData">
                   <h2>Will Smith</h2>
@@ -237,7 +237,7 @@ function About() {
           <div className="serviceBlock">
             <div className="serviceItem">
               <div className="serviceImg">
-                <img src="/public/delivery.png" alt="" />
+                <img src="/delivery.png" alt="" />
               </div>
               <div className="serviceData">
                 <h2>FREE AND FAST DELIVERY</h2>
@@ -246,7 +246,7 @@ function About() {
             </div>
             <div className="serviceItem">
               <div className="serviceImg">
-                <img src="/public/call.png" alt="" />
+                <img src="/call.png" alt="" />
               </div>
               <div className="serviceData">
                 <h2>24/7 CUSTOMER SERVICE</h2>
@@ -255,7 +255,7 @@ function About() {
             </div>
             <div className="serviceItem">
               <div className="serviceImg">
-                <img src="/public/garantee.png" alt="" />
+                <img src="/garantee.png" alt="" />
               </div>
               <div className="serviceData">
                 <h2>MONEY BACK GUARANTEE</h2>

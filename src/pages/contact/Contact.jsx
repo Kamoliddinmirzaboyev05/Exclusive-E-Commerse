@@ -12,14 +12,14 @@ function Contact() {
         <div className="mainContent">
           <div className="leftData">
             <div className="leftDataTitle">
-              <img src="/public/call.svg" alt="" />
+              <img src="/call.svg" alt="" />
               <h2>Call To Us</h2>
             </div>
             <p>We are available 24/7, 7 days a week.</p>
             <p>Phone: +8801611112222</p>
             <div className="hr"></div>
             <div className="leftDataTitle">
-              <img src="/public/email.svg" alt="" />
+              <img src="/email.svg" alt="" />
               <h2>Write To US</h2>
             </div>
             <p>Fill out our form and we will contact you within 24 hours.</p>

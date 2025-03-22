@@ -99,47 +99,47 @@ function Home() {
               <div className="heroSlider">
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
               </div>
@@ -258,7 +258,7 @@ function Home() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -269,7 +269,7 @@ function Home() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
@@ -286,7 +286,7 @@ function Home() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -297,7 +297,7 @@ function Home() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
@@ -314,7 +314,7 @@ function Home() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -325,7 +325,7 @@ function Home() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
@@ -342,7 +342,7 @@ function Home() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -353,7 +353,7 @@ function Home() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
@@ -388,7 +388,7 @@ function Home() {
               <button className="viewBtn buyNowBtn">Buy Now</button>
             </div>
             <div className="rightImg">
-              <img src="/public/musicex.png" alt="" />
+              <img src="/musicex.png" alt="" />
             </div>
           </div>
         </section>
@@ -402,7 +402,7 @@ function Home() {
             <h2 className="sectionTitle">New Arrival</h2>
             <div className="featuredBlock">
               <div className="leftProduct">
-                <img src="/public/playstation.png" alt="" />
+                <img src="/playstation.png" alt="" />
                 <div className="featuredProductData">
                   <h2>PlayStation 5</h2>
                   <p>Black and White version of the PS5 coming out on sale.</p>
@@ -411,7 +411,7 @@ function Home() {
               </div>
               <div className="rightProducts">
                 <div className="topProduct">
-                  <img src="/public/women.png" alt="" />
+                  <img src="/women.png" alt="" />
                   <div className="featuredProductData">
                     <h2>Women’s Collections</h2>
                     <p>
@@ -422,7 +422,7 @@ function Home() {
                 </div>
                 <div className="bottomProducts">
                   <div className="bottomProduct">
-                    <img src="/public/speakers.png" alt="" />
+                    <img src="/speakers.png" alt="" />
                     <div className="featuredProductData">
                       <h2>Speakers</h2>
                       <p>Amazon wireless speakers</p>
@@ -430,7 +430,7 @@ function Home() {
                     </div>
                   </div>
                   <div className="bottomProduct">
-                    <img src="/public/gucci.png" alt="" />
+                    <img src="/gucci.png" alt="" />
                     <div className="featuredProductData">
                       <h2>Perfume</h2>
                       <p>GUCCI INTENSE OUD EDP</p>
@@ -448,7 +448,7 @@ function Home() {
             <div className="serviceBlock">
               <div className="serviceItem">
                 <div className="serviceImg">
-                  <img src="/public/delivery.png" alt="" />
+                  <img src="/delivery.png" alt="" />
                 </div>
                 <div className="serviceData">
                   <h2>FREE AND FAST DELIVERY</h2>
@@ -457,7 +457,7 @@ function Home() {
               </div>
               <div className="serviceItem">
                 <div className="serviceImg">
-                  <img src="/public/call.png" alt="" />
+                  <img src="/call.png" alt="" />
                 </div>
                 <div className="serviceData">
                   <h2>24/7 CUSTOMER SERVICE</h2>
@@ -466,7 +466,7 @@ function Home() {
               </div>
               <div className="serviceItem">
                 <div className="serviceImg">
-                  <img src="/public/garantee.png" alt="" />
+                  <img src="/garantee.png" alt="" />
                 </div>
                 <div className="serviceData">
                   <h2>MONEY BACK GUARANTEE</h2>

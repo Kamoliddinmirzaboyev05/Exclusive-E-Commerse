@@ -8,7 +8,7 @@ function SignIn() {
       <div className="signIp">
         <div className="container">
           <div className='signIpImg'>
-            <img src="/public/Side Image (1).png" alt="" />
+            <img src="/Side Image (1).png" alt="" />
           </div>
           <div>
 

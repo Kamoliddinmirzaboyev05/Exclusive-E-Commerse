@@ -44,11 +44,11 @@ function Footer() {
             <p>Save $3 with App New User Only</p>
             <div className="footerImgs">
               <div className="qr">
-                <img src="/public/qr.png" alt="" />
+                <img src="/qr.png" alt="" />
               </div>
               <div className="downloadApp">
-                <img src="/public/GooglePlay.svg" alt="" />
-                <img src="/public/AppStore.png" alt="" />
+                <img src="/GooglePlay.svg" alt="" />
+                <img src="/AppStore.png" alt="" />
               </div>
             </div>
           </div>

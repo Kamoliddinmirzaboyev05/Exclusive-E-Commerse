@@ -81,7 +81,7 @@ function OneProduct() {
                 <h2 className="productTitle">{oneProductData?.title}</h2>
                 <div className="rating">
                   <div className="rate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(150 Reviews)</p>
                   </div>
                   <span></span>
@@ -222,7 +222,7 @@ function OneProduct() {
                 <div className="deliveryService">
                   <div className="freeDelivery">
                     <div className="serviceBoxImg">
-                      <img src="/public/delivery.svg" alt="" />
+                      <img src="/delivery.svg" alt="" />
                     </div>
                     <div className="serviceBoxText">
                       <h2>Free Delivery</h2>
@@ -231,7 +231,7 @@ function OneProduct() {
                   </div>
                   <div className="freeDelivery returnDelivery">
                     <div className="serviceBoxImg">
-                      <img src="/public/reutnr.svg" alt="" />
+                      <img src="/reutnr.svg" alt="" />
                     </div>
                     <div className="serviceBoxText">
                       <h2>Return Delivery</h2>
@@ -262,7 +262,7 @@ function OneProduct() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -273,7 +273,7 @@ function OneProduct() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
@@ -290,7 +290,7 @@ function OneProduct() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -301,7 +301,7 @@ function OneProduct() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
@@ -318,7 +318,7 @@ function OneProduct() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -329,7 +329,7 @@ function OneProduct() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
@@ -346,7 +346,7 @@ function OneProduct() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -357,7 +357,7 @@ function OneProduct() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
