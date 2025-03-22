@@ -30,6 +30,7 @@ function OneProduct() {
       .then((response) => response.json())
       .then((result) => {
         setOneProductData(result);
+        
       })
       .catch((error) => console.error(error));
   };

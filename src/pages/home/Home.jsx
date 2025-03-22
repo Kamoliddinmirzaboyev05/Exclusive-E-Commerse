@@ -7,24 +7,22 @@ import { IoCameraOutline } from "react-icons/io5";
 import { PiHeadphonesBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 // import './styles.css';
 
 // import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 function Home() {
-
   const [products, setProducts] = useState(null);
   const [categories, setCategories] = useState(null);
   const [productCount, setProductCount] = useState(4);
-  
 
   // Getdata function
   const getData = () => {
@@ -64,17 +62,16 @@ function Home() {
       .then((response) => response.json())
       .then((result) => {
         setCategories(result);
+        
       })
       .catch((error) => console.error(error));
   };
   return (
-
-
     <div className="home">
       <header>
         <div className="hero">
           <div className="container">
-            <div className="heroFilter" >
+            <div className="heroFilter">
               {categories?.map((category) => {
                 return (
                   <div key={category.id} className="row">
@@ -98,8 +95,8 @@ function Home() {
               navigation={true}
               modules={[Autoplay, Pagination, Navigation]}
               className="mySwiper"
-            ><div className="heroSlider">
-
+            >
+              <div className="heroSlider">
                 <SwiperSlide>
                   <div className="heroSlide">
                     <img src="/public/heroimg.png" alt="" />
@@ -147,10 +144,6 @@ function Home() {
                 </SwiperSlide>
               </div>
             </Swiper>
-
-
-
-
           </div>
         </div>
       </header>
@@ -230,30 +223,14 @@ function Home() {
             </div>
             <h2 className="sectionTitle">Browse By Category</h2>
             <div className="categoryBlock">
-              <div className="categoryBox">
-                <CiMobile1 />
-                <p>Phones</p>
-              </div>
-              <div className="categoryBox">
-                <CiDesktop />
-                <p>Computers</p>
-              </div>
-              <div className="categoryBox">
-                <BsSmartwatch />
-                <p>SmartWatch</p>
-              </div>
-              <div className="categoryBox">
-                <IoCameraOutline />
-                <p>Camera</p>
-              </div>
-              <div className="categoryBox">
-                <PiHeadphonesBold />
-                <p>HeadPhones</p>
-              </div>
-              <div className="categoryBox">
-                <BiJoystick />
-                <p>Phones</p>
-              </div>
+              {categories?.map((category) => {
+                return (
+                  <div key={category.id} className="categoryBox">
+                    <CiMobile1 />
+                    <p>{category.title}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -412,255 +389,6 @@ function Home() {
             </div>
             <div className="rightImg">
               <img src="/public/musicex.png" alt="" />
-            </div>
-          </div>
-        </section>
-
-        <section className="exploreProducts">
-          <div className="container">
-            <div className="sectionType">
-              <span className="rec"></span>
-              <p>Explore Our Products</p>
-            </div>
-            <div className="sectionHead">
-              <h2 className="sectionTitle">Browse By Category</h2>
-              <div className="slideBtns">
-                <button className="slideBtn">
-                  <i className="fas fa-arrow-left"></i>
-                </button>
-                <button className="slideBtn">
-                  <i className="fas fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-            <div className="productsBlock">
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="view">
-              <button className="viewBtn">View All Products</button>
             </div>
           </div>
         </section>

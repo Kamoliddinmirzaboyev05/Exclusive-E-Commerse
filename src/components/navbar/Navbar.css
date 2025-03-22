@@ -7,6 +7,7 @@
 .navtop .container {
   display: flex;
   justify-content: end;
+  align-items: center;
   gap: 400px;
 }
 .mainNav {
@@ -61,4 +62,8 @@
 }
 .navBtns i{
     font-size: 20px;
+}
+.MuiSelect-select{
+  color: white !important;
+  border: none !important;
 }
