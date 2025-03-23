@@ -1,0 +1,35 @@
+.cartTitle{
+    box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    margin-bottom: 40px;
+}
+.cartBoxImg img{
+    width: 54px;
+    height: 54px;
+}
+.cartBoxImg{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border:  1px solid red;
+    width: 200px;
+    position: relative;
+
+}
+.cartBoxs{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+}
+.Cartcancel{
+    position: absolute;
+    top: 0;
+    width: 24px ;
+    height: 24px;
+}

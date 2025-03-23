@@ -178,12 +178,15 @@
   justify-content: center;
   transition: all 0.5s ease;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .categoryBox:hover {
   background-color: #db4444;
 }
-
+.categoryBox:hover p {
+  color: white;
+}
 .categoryBox svg {
   font-size: 58px;
   padding-bottom: 16px;
@@ -224,7 +227,7 @@
   padding-bottom: 32px;
 }
 
-.leftData>h2 {
+.leftData > h2 {
   font-size: 38px;
   font-weight: 600;
   line-height: 60px;
@@ -284,7 +287,9 @@
 }
 
 /* styling featuredProducts section */
-
+.featuredProducts .container {
+  padding-top: 80px;
+}
 .featuredProducts .featuredBlock {
   display: flex;
   gap: 30px;
@@ -385,7 +390,7 @@
   font-weight: 500;
   color: #fafafa;
   text-decoration: none;
-  border-bottom: 1px solid #8A8A8A;
+  border-bottom: 1px solid #8a8a8a;
 }
 
 /* Styling services section */
@@ -443,7 +448,6 @@
   padding-bottom: 8px;
 }
 
-
 /* =================================================== */
 .swiper {
   width: 100%;
@@ -489,12 +493,12 @@
 
 .swiper-button-next::after {
   font-size: 28px !important;
-  color: #DB4444;
+  color: #db4444;
 }
 
 .swiper-button-prev::after {
   font-size: 28px !important;
-  color: #DB4444;
+  color: #db4444;
 }
 
 .swiper-button-next {
@@ -504,10 +508,9 @@
 .swiper-button-prev {
   left: 65px !important;
 }
-.swiper-pagination-bullet{
+.swiper-pagination-bullet {
   background-color: white !important;
 }
 .swiper-pagination-bullet-active {
-
-  background-color: #DB4444 !important;
+  background-color: #db4444 !important;
 }

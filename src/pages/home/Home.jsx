@@ -7,24 +7,22 @@ import { IoCameraOutline } from "react-icons/io5";
 import { PiHeadphonesBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 // import './styles.css';
 
 // import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 function Home() {
-
   const [products, setProducts] = useState(null);
   const [categories, setCategories] = useState(null);
   const [productCount, setProductCount] = useState(4);
-  
 
   // Getdata function
   const getData = () => {
@@ -64,17 +62,16 @@ function Home() {
       .then((response) => response.json())
       .then((result) => {
         setCategories(result);
+        
       })
       .catch((error) => console.error(error));
   };
   return (
-
-
     <div className="home">
       <header>
         <div className="hero">
           <div className="container">
-            <div className="heroFilter" >
+            <div className="heroFilter">
               {categories?.map((category) => {
                 return (
                   <div key={category.id} className="row">
@@ -98,59 +95,55 @@ function Home() {
               navigation={true}
               modules={[Autoplay, Pagination, Navigation]}
               className="mySwiper"
-            ><div className="heroSlider">
-
+            >
+              <div className="heroSlider">
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div className="heroSlide">
-                    <img src="/public/heroimg.png" alt="" />
+                    <img src="/heroimg.png" alt="" />
                   </div>
                 </SwiperSlide>
               </div>
             </Swiper>
-
-
-
-
           </div>
         </div>
       </header>
@@ -230,30 +223,14 @@ function Home() {
             </div>
             <h2 className="sectionTitle">Browse By Category</h2>
             <div className="categoryBlock">
-              <div className="categoryBox">
-                <CiMobile1 />
-                <p>Phones</p>
-              </div>
-              <div className="categoryBox">
-                <CiDesktop />
-                <p>Computers</p>
-              </div>
-              <div className="categoryBox">
-                <BsSmartwatch />
-                <p>SmartWatch</p>
-              </div>
-              <div className="categoryBox">
-                <IoCameraOutline />
-                <p>Camera</p>
-              </div>
-              <div className="categoryBox">
-                <PiHeadphonesBold />
-                <p>HeadPhones</p>
-              </div>
-              <div className="categoryBox">
-                <BiJoystick />
-                <p>Phones</p>
-              </div>
+              {categories?.map((category) => {
+                return (
+                  <div key={category.id} className="categoryBox">
+                    <CiMobile1 />
+                    <p>{category.title}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -281,7 +258,7 @@ function Home() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -292,7 +269,7 @@ function Home() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
@@ -309,7 +286,7 @@ function Home() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -320,7 +297,7 @@ function Home() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
@@ -337,7 +314,7 @@ function Home() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -348,7 +325,7 @@ function Home() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
@@ -365,7 +342,7 @@ function Home() {
                     <i className="fa-regular fa-eye"></i>
                   </div>
                   <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
+                    <img src="/card1.1.png" alt="" />
                   </div>
                   <button className="addCartBtn">Add To Cart</button>
                 </div>
@@ -376,7 +353,7 @@ function Home() {
                     <p className="lastPrice">$160</p>
                   </div>
                   <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
+                    <img src="/stars].svg" alt="" />
                     <p>(88)</p>
                   </div>
                 </div>
@@ -411,256 +388,7 @@ function Home() {
               <button className="viewBtn buyNowBtn">Buy Now</button>
             </div>
             <div className="rightImg">
-              <img src="/public/musicex.png" alt="" />
-            </div>
-          </div>
-        </section>
-
-        <section className="exploreProducts">
-          <div className="container">
-            <div className="sectionType">
-              <span className="rec"></span>
-              <p>Explore Our Products</p>
-            </div>
-            <div className="sectionHead">
-              <h2 className="sectionTitle">Browse By Category</h2>
-              <div className="slideBtns">
-                <button className="slideBtn">
-                  <i className="fas fa-arrow-left"></i>
-                </button>
-                <button className="slideBtn">
-                  <i className="fas fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-            <div className="productsBlock">
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="productCard">
-                <div className="productImgBox">
-                  <span className="disc">
-                    <p>-40%</p>
-                  </span>
-                  <div className="hoverBtn heartBtn">
-                    <i className="fa-regular fa-heart"></i>
-                  </div>
-                  <div className="hoverBtn eyeBtn">
-                    <i className="fa-regular fa-eye"></i>
-                  </div>
-                  <div className="productImg">
-                    <img src="/public/card1.1.png" alt="" />
-                  </div>
-                  <button className="addCartBtn">Add To Cart</button>
-                </div>
-                <div className="productData">
-                  <h2>HAVIT HV-G92 Gamepad</h2>
-                  <div className="price">
-                    <p className="newPrice">$120</p>
-                    <p className="lastPrice">$160</p>
-                  </div>
-                  <div className="productRate">
-                    <img src="/public/stars].svg" alt="" />
-                    <p>(88)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="view">
-              <button className="viewBtn">View All Products</button>
+              <img src="/musicex.png" alt="" />
             </div>
           </div>
         </section>
@@ -674,7 +402,7 @@ function Home() {
             <h2 className="sectionTitle">New Arrival</h2>
             <div className="featuredBlock">
               <div className="leftProduct">
-                <img src="/public/playstation.png" alt="" />
+                <img src="/playstation.png" alt="" />
                 <div className="featuredProductData">
                   <h2>PlayStation 5</h2>
                   <p>Black and White version of the PS5 coming out on sale.</p>
@@ -683,7 +411,7 @@ function Home() {
               </div>
               <div className="rightProducts">
                 <div className="topProduct">
-                  <img src="/public/women.png" alt="" />
+                  <img src="/women.png" alt="" />
                   <div className="featuredProductData">
                     <h2>Women’s Collections</h2>
                     <p>
@@ -694,7 +422,7 @@ function Home() {
                 </div>
                 <div className="bottomProducts">
                   <div className="bottomProduct">
-                    <img src="/public/speakers.png" alt="" />
+                    <img src="/speakers.png" alt="" />
                     <div className="featuredProductData">
                       <h2>Speakers</h2>
                       <p>Amazon wireless speakers</p>
@@ -702,7 +430,7 @@ function Home() {
                     </div>
                   </div>
                   <div className="bottomProduct">
-                    <img src="/public/gucci.png" alt="" />
+                    <img src="/gucci.png" alt="" />
                     <div className="featuredProductData">
                       <h2>Perfume</h2>
                       <p>GUCCI INTENSE OUD EDP</p>
@@ -720,7 +448,7 @@ function Home() {
             <div className="serviceBlock">
               <div className="serviceItem">
                 <div className="serviceImg">
-                  <img src="/public/delivery.png" alt="" />
+                  <img src="/delivery.png" alt="" />
                 </div>
                 <div className="serviceData">
                   <h2>FREE AND FAST DELIVERY</h2>
@@ -729,7 +457,7 @@ function Home() {
               </div>
               <div className="serviceItem">
                 <div className="serviceImg">
-                  <img src="/public/call.png" alt="" />
+                  <img src="/call.png" alt="" />
                 </div>
                 <div className="serviceData">
                   <h2>24/7 CUSTOMER SERVICE</h2>
@@ -738,7 +466,7 @@ function Home() {
               </div>
               <div className="serviceItem">
                 <div className="serviceImg">
-                  <img src="/public/garantee.png" alt="" />
+                  <img src="/garantee.png" alt="" />
                 </div>
                 <div className="serviceData">
                   <h2>MONEY BACK GUARANTEE</h2>

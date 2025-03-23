@@ -8,7 +8,7 @@ function SignUp() {
     <div className="signUp">
       <div className="container">
         <div className='signUpImg'>
-          <img src="/public/Side Image (1).png" alt="" />
+          <img src="/Side Image (1).png" alt="" />
         </div>
         <div>
 
@@ -20,7 +20,7 @@ function SignUp() {
           <input type="text" placeholder='Email or Phone Number' /><br />
           <input type="text" placeholder='Password' /><br />
           <button className='Account'>Create Account</button> <br />
-          <button className='google'><div><img src="/public/Icon-Google.svg" alt="" /></div> <div>Sign up with Google</div></button>
+          <button className='google'><div><img src="/Icon-Google.svg" alt="" /></div> <div>Sign up with Google</div></button>
           <h5>Already have account? <Link to={"/signin"}>Log in</Link></h5>
         </div>
       </div>

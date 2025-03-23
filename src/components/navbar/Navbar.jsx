@@ -1,7 +1,18 @@
 import React from "react";
 import "./Navbar.css";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import { Link, NavLink } from "react-router-dom";
+import { AiOutlineUser } from "react-icons/ai";
 function Navbar() {
+  const [til, setAge] = React.useState("");
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
   return (
     <div className="navbar">
       <nav>
@@ -11,11 +22,22 @@ function Navbar() {
               Summer Sale For All Swim Suits And Free Express Delivery - OFF
               50%!
             </p>
-            <select name="select" id="select">
-              <option value="eng">English</option>
-              <option value="ru">Russian</option>
-              <option value="uz">O'zbek</option>
-            </select>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">til</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={til}
+                  label="til"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"eng"}>English</MenuItem>
+                  <MenuItem value={"uz"}>Uzbek</MenuItem>
+                  <MenuItem value={"ru"}>Russian</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
           </div>
         </div>
         <div className="mainNav">
@@ -36,8 +58,19 @@ function Navbar() {
                   <i className="fas fa-search"></i>
                 </button>
               </form>
-              <button><i className="fa-regular fa-heart"></i></button>
-              <button><i className="fa fa-shopping-cart"></i></button>
+              <button>
+                <i className="fa-regular fa-heart"></i>
+              </button>
+             <Link to={"/cart"}>
+             <button>
+                <i className="fa fa-shopping-cart"></i>
+              </button>
+             </Link>
+              <Link to={"/account"} >
+                <button>
+                  <AiOutlineUser />
+                </button>
+              </Link>
             </div>
           </div>
         </div>
