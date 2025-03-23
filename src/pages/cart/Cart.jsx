@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Cart.css"
+import { Link } from 'react-router-dom'
 
 function Cart() {
   return (
@@ -96,9 +97,11 @@ function Cart() {
                 <p>Total:</p>
                 <p>$1750</p>
               </div>
-              <button>
-                Procees to checkout
-              </button>
+              <Link to={"/checkout"}>
+                <button>
+                  Procees to checkout
+                </button>
+              </Link>
             </div>
           </div>
         </div>

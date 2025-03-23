@@ -12,6 +12,7 @@ import Contact from "./pages/contact/Contact";
 import About from "./pages/about/About";
 import Account from "./pages/account/Account";
 import Cart from "./pages/cart/Cart";
+import Checkout from "./pages/checkout/Checkout";
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/account" element={<Account />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/oneProduct/:id" element={<OneProduct />} />

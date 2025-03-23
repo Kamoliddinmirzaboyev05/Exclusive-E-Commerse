@@ -3,6 +3,7 @@ import "./Checkout.css";
 function Checkout() {
   return (
     <div className="checkoutPage">
+      <div className="container">
       <div className="pageWay">
         <p>Home</p>
         <p>/</p>
@@ -84,6 +85,7 @@ function Checkout() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
