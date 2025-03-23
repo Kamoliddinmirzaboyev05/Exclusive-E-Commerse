@@ -16,10 +16,10 @@ function Account() {
           </p>
         </div>
         <div className="mainContent">
-          <div className="leftData">
+          <div className="leftLinks">
             <h2>Manage My Account</h2>
             <div className="leftDataLinks">
-              <Link>My Profile</Link>
+              <Link className="active">My Profile</Link>
               <Link>Address Book</Link>
               <Link>My Payment Options</Link>
             </div>
@@ -31,28 +31,37 @@ function Account() {
           </div>
           <div className="rightForm">
             <form action="#">
-             <h2>Edit Your Profile</h2>
-             <div className="row">
-              <div className="rowItem">
-                <label>First Name</label>
-                <input type="text" placeholder="Md" />
+              <h2 className="formTitle">Edit Your Profile</h2>
+              <div className="row">
+                <div className="rowItem">
+                  <label>First Name</label>
+                  <input required type="text" placeholder="Md" />
+                </div>
+                <div className="rowItem">
+                  <label>Last Name</label>
+                  <input required type="text" placeholder="Rimel" />
+                </div>
               </div>
-              <div className="rowItem">
-                <label>Last Name</label>
-                <input type="text" placeholder="Rimel" />
+              <div className="row">
+                <div className="rowItem">
+                  <label>Email</label>
+                  <input required type="text" placeholder="rimel1111@gmail.com" />
+                </div>
+                <div className="rowItem">
+                  <label>Address</label>
+                  <input required type="text" placeholder="Kingston, 5236, United State" />
+                </div>
               </div>
-             </div>
-             <div className="row">
-              <div className="rowItem">
-                <label>First Name</label>
-                <input type="text" placeholder="Md" />
+              <div className="passwordChanges">
+                <h2>Password Changes</h2>
+                <input required type="password" placeholder="Current Password" />
+                <input required type="password" placeholder="New Password" />
+                <input required type="password" placeholder="Confirim New Password" />
+                <div className="formBtns">
+                  <button className="cancelBtn">Cancel</button>
+                  <button className="viewBtn">Save Changes</button>
+                </div>
               </div>
-              <div className="rowItem">
-                <label>Last Name</label>
-                <input type="text" placeholder="Rimel" />
-              </div>
-             </div>
-             
             </form>
           </div>
         </div>
