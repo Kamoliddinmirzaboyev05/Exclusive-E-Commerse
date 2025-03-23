@@ -1,0 +1,16 @@
+.pageTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.welcomeLink {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+.welcomeLink a {
+  color: #db4444;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}

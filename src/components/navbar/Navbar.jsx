@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Link, NavLink } from "react-router-dom";
+import { AiOutlineUser } from "react-icons/ai";
 function Navbar() {
   const [age, setAge] = React.useState("");
 
@@ -63,6 +64,11 @@ function Navbar() {
               <button>
                 <i className="fa fa-shopping-cart"></i>
               </button>
+              <Link to={"/account"} >
+                <button>
+                  <AiOutlineUser />
+                </button>
+              </Link>
             </div>
           </div>
         </div>

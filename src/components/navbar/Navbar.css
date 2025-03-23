@@ -63,6 +63,9 @@
 .navBtns i{
     font-size: 20px;
 }
+.navBtns svg{
+  font-size: 25px;
+}
 .MuiSelect-select{
   color: white !important;
   border: none !important;
