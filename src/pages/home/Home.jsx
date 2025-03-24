@@ -150,7 +150,6 @@ function Home() {
 
       <main>
         <section className="flashSales">
-          <h1>Sarvarbek qo'sdi</h1>
           <div className="container">
             <div className="sectionType">
               <span className="rec"></span>
