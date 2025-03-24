@@ -60,10 +60,19 @@ function Home() {
       .then((response) => response.json())
       .then((result) => {
         setCategories(result);
-        
       })
       .catch((error) => console.error(error));
   };
+
+  // Timer function
+  const timerFunction = () => {
+    const [time, setTime] = useState(87400);
+    setInterval(() => {
+      // console.log(time);
+      // setTime(time - 1);
+    }, 1000);
+  };
+  timerFunction();
   return (
     <div className="home">
       <header>
