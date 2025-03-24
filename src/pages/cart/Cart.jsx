@@ -35,7 +35,7 @@ function Cart() {
               <p>$650</p>
             </div>
             <div className="cartBoxInput">
-              <input type="number" min="1" max="99" value="01" />
+              <input type="number" min="1" max="99" defaultValue="1" />
             </div>
             <div className="cartBoxSubtotal">
               <p>$650 </p>
@@ -59,7 +59,7 @@ function Cart() {
               <p>$550</p>
             </div>
             <div className="cartBoxInput">
-              <input type="number" min="1" max="99" value="02" />
+              <input type="number" min="1" max="99" defaultValue="1" />
             </div>
             <div className="cartBoxSubtotal">
               <p>$1100 </p>

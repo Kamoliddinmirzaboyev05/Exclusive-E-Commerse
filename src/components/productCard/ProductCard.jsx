@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
 function ProductCard({ product }) {
@@ -7,7 +7,12 @@ function ProductCard({ product }) {
       <div className="productCard">
         <div className="productImgBox">
           <span className="disc">
-            <p>-40%</p>
+            <p>
+              {(100 - (product.discount_price / product.price) * 100).toFixed(
+                0
+              )}
+              %
+            </p>
           </span>
           <div className="hoverBtn heartBtn">
             <i className="fa-regular fa-heart"></i>

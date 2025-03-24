@@ -253,9 +253,11 @@
   padding-bottom: 40px;
 }
 
-.discTimer span {
-  width: 62px;
-  height: 62px;
+.discTimer .discTimerItem {
+  width: 92px;
+  height: 52px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border-radius: 50%;
   background-color: white;
   display: flex;
@@ -265,16 +267,17 @@
   color: #000;
 }
 
-.discTimer span h2 {
+.discTimerItem h2 {
   font-size: 16px;
   font-weight: 600;
   line-height: 18px;
 }
 
-.discTimer span p {
+.discTimerItem p {
   font-size: 11px;
   font-weight: 400;
   line-height: 18px;
+  padding: 0 !important;
 }
 
 .buyNowBtn {
