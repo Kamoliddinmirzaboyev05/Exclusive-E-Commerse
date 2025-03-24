@@ -58,14 +58,16 @@ function Navbar() {
                   <i className="fas fa-search"></i>
                 </button>
               </form>
-              <button>
-                <i className="fa-regular fa-heart"></i>
-              </button>
-             <Link to={"/cart"}>
-             <button>
-                <i className="fa fa-shopping-cart"></i>
-              </button>
-             </Link>
+              <Link to={"/wishlist"}>
+                <button>
+                  <i className="fa-regular fa-heart"></i>
+                </button>
+              </Link>
+              <Link to={"/cart"}>
+                <button>
+                  <i className="fa fa-shopping-cart"></i>
+                </button>
+              </Link>
               <Link to={"/account"} >
                 <button>
                   <AiOutlineUser />
