@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import { BiJoystick, BiSolidHomeAlt2 } from "react-icons/bi";
 import { CiDesktop, CiMobile1 } from "react-icons/ci";
-import { BsSmartwatch } from "react-icons/bs";
-import { IoCameraOutline } from "react-icons/io5";
-import { PiHeadphonesBold } from "react-icons/pi";
+
 import { Link } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
