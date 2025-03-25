@@ -106,6 +106,7 @@
 .colours {
   display: flex;
   padding-bottom: 24px;
+  gap: 16px;
 }
 .selectColor {
   display: flex;

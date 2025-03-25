@@ -31,8 +31,8 @@ function ProductCard({ product }) {
         <div className="productData">
           <h2>{String(product.title).slice(0, 15)}...</h2>
           <div className="price">
-            <p className="newPrice">${product.price}</p>
-            <p className="lastPrice">${product.discount_price}</p>
+            <p className="newPrice">${product.discount_price}</p>
+            <p className="lastPrice">${product.price}</p>
           </div>
           <div className="productRate">
             <img src="/stars].svg" alt="" />
