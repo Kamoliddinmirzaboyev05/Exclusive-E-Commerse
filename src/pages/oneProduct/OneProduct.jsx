@@ -178,9 +178,16 @@ function OneProduct() {
                         return (
                           <span
                             onClick={() => {
-                              setProductSize("XS");
+                              setProductSize(
+                                oneProductData.properties.size[index]
+                              );
                             }}
-                            className={productSize == "XS" ? "active" : "span"}
+                            className={
+                              productSize ==
+                              oneProductData.properties.size[index]
+                                ? "active"
+                                : "span"
+                            }
                           >
                             <p>{oneProductData.properties.size[index]}</p>
                           </span>

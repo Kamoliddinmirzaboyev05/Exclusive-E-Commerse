@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./SignUp.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const [userPassword, setUserPassword] = useState(null);
+
+  const navigate = useNavigate();
+
   const newUser = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -30,6 +33,14 @@ function SignUp() {
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
+
+        if (result?.email_or_phone) {
+          alert(result?.email_or_phone[0]);
+        } else if (result?.password) {
+          alert(result?.password[0]);
+        } else if (result.message) {
+          navigate("/signin");
+        }
       })
       .catch((error) => console.error(error));
   };
