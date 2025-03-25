@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -7,12 +7,23 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
+import { CiLogout, CiStar } from "react-icons/ci";
+import { LuShoppingBag } from "react-icons/lu";
+import { FaRegUser } from "react-icons/fa";
 function Navbar() {
   const [til, setAge] = React.useState("");
-
+  const [showModal, setShowModal] = useState(false);
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
+  // Check user logged
+
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    localStorage.getItem("token") != "" ? setIsLogin(true) : false;
+  }, [localStorage.getItem("token")]);
   return (
     <div className="navbar">
       <nav>
@@ -42,6 +53,37 @@ function Navbar() {
         </div>
         <div className="mainNav">
           <div className="container">
+            <div className={showModal ? "navModal" : "hidden"}>
+              <Link
+                onClick={() => {
+                  setShowModal(false);
+                }}
+                to={"account"}
+                className="modalItem"
+              >
+                <FaRegUser />
+                <p>Manage My Account</p>
+              </Link>
+              <div className="modalItem">
+                <LuShoppingBag />
+                <p>My Order</p>
+              </div>
+              <div className="modalItem">
+                <CiStar />
+                <p>My Reviews</p>
+              </div>
+              <div
+                onClick={() => {
+                  setIsLogin(false);
+                  setShowModal(false);
+                  localStorage.setItem("token", "");
+                }}
+                className="modalItem"
+              >
+                <CiLogout />
+                <p>Logout</p>
+              </div>
+            </div>
             <Link to={"/"} className="logo">
               <h1>Exclusive</h1>
             </Link>
@@ -68,11 +110,16 @@ function Navbar() {
                   <i className="fa fa-shopping-cart"></i>
                 </button>
               </Link>
-              <Link to={"/account"} >
-                <button>
+
+              {isLogin && (
+                <button
+                  onClick={() => {
+                    setShowModal(true);
+                  }}
+                >
                   <AiOutlineUser />
                 </button>
-              </Link>
+              )}
             </div>
           </div>
         </div>

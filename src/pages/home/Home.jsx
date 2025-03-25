@@ -267,7 +267,7 @@ function Home() {
                   if (product.price > product.discount_price) {
                     return (
                       <SwiperSlide>
-                        <ProductCard product={product} />
+                        <ProductCard key={product.id} product={product} />
                       </SwiperSlide>
                     );
                   } else {

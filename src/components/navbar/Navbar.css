@@ -13,8 +13,49 @@
 .mainNav {
   border-bottom: 0.5px solid #b3b3b3;
 }
+
+.hidden {
+  display: none;
+}
+.modalItem{
+  color: white;
+}
+.navModal {
+  position: absolute;
+  top: 80px;
+  right: 0px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(1px);
+  z-index: 99;
+  padding: 24px 22px;
+  border-radius: 4px;
+  color: white;
+  width: 224px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.modalItem {
+  cursor: pointer;
+  display: flex;
+  justify-content: start;
+  transition: all 0.5s ease;
+  gap: 12px;
+}
+.modalItem:hover {
+  color: #db4444;
+}
+.modalItem p {
+  font-size: 14px;
+  line-height: 21px;
+}
+.modalItem svg {
+  font-size: 20px;
+}
 .mainNav .container {
   display: flex;
+  position: relative;
+
   justify-content: space-between;
   align-items: center;
   padding-top: 40px;
@@ -55,18 +96,18 @@
   border: none;
   background-color: transparent;
 }
-.navBtns button{
-    background-color: transparent;
-    border: none;
-    outline: none;
+.navBtns button {
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
-.navBtns i{
-    font-size: 20px;
+.navBtns i {
+  font-size: 20px;
 }
-.navBtns svg{
+.navBtns svg {
   font-size: 25px;
 }
-.MuiSelect-select{
+.MuiSelect-select {
   color: white !important;
   border: none !important;
 }
