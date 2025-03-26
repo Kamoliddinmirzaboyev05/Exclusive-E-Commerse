@@ -32,6 +32,12 @@ function Account() {
       .then((result) => {
         setUserData(result);
         console.log(result);
+        setFirstName(result?.first_name);
+        setLastName(result?.last_name);
+        setAdress(result?.address);
+        setPhone("+998889563848");
+        setEmail(result.email_or_phone);
+        setPassword(result.password)
       })
       .catch((error) => console.error(error));
   };
@@ -114,7 +120,7 @@ function Account() {
                     onChange={(e) => {
                       setFirstName(e.target.value);
                     }}
-                    defaultValue={userData?.first_name}
+                    value={first_name}
                     required
                     type="text"
                     placeholder="Md"
@@ -126,7 +132,7 @@ function Account() {
                     onChange={(e) => {
                       setLastName(e.target.value);
                     }}
-                    defaultValue={userData?.last_name}
+                    value={last_name}
                     required
                     type="text"
                     placeholder="Rimel"
@@ -140,7 +146,7 @@ function Account() {
                     onChange={(e) => {
                       setEmail(e.target.value);
                     }}
-                    defaultValue={userData?.email_or_phone}
+                    value={email}
                     required
                     type="text"
                     placeholder="rimel1111@gmail.com"
@@ -152,7 +158,7 @@ function Account() {
                     onChange={(e) => {
                       setAdress(e.target.value);
                     }}
-                    defaultValue={userData?.address}
+                    value={address}
                     required
                     type="text"
                     placeholder="Kingston, 5236, United State"
@@ -165,22 +171,18 @@ function Account() {
                   onChange={(e) => {
                     setPhone(e.target.value);
                   }}
-                  defaultValue={userData?.phone}
+                  value={phone}
                   type="text"
                   placeholder="+998 (12) 345 67 89"
                 />
               </div>
               <div className="passwordChanges">
                 <h2>Password Changes</h2>
-                {/* <input
-                 
-                  type="password"
-                  placeholder="Current Password"
-                /> */}
                 <input
                   onChange={(e) => {
                     setPassword(String(e.target.value));
                   }}
+                  value={password }
                   type="password"
                   placeholder="New Password"
                 />

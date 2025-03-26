@@ -24,6 +24,12 @@ function Navbar() {
   useEffect(() => {
     localStorage.getItem("token") != "" ? setIsLogin(true) : false;
   }, [localStorage.getItem("token")]);
+
+  const closeModal = (e) => {
+    !e.target.classList.contains("navModal")
+      ? setShowModal(false)
+      : setShowModal(true);
+  };
   return (
     <div className="navbar">
       <nav>
@@ -53,35 +59,42 @@ function Navbar() {
         </div>
         <div className="mainNav">
           <div className="container">
-            <div className={showModal ? "navModal" : "hidden"}>
-              <Link
-                onClick={() => {
-                  setShowModal(false);
-                }}
-                to={"account"}
-                className="modalItem"
-              >
-                <FaRegUser />
-                <p>Manage My Account</p>
-              </Link>
-              <div className="modalItem">
-                <LuShoppingBag />
-                <p>My Order</p>
-              </div>
-              <div className="modalItem">
-                <CiStar />
-                <p>My Reviews</p>
-              </div>
-              <div
-                onClick={() => {
-                  setIsLogin(false);
-                  setShowModal(false);
-                  localStorage.setItem("token", "");
-                }}
-                className="modalItem"
-              >
-                <CiLogout />
-                <p>Logout</p>
+            <div
+              onClick={(e) => {
+                closeModal(e);
+              }}
+              className={showModal ? "modalBack" : "hidden"}
+            >
+              <div className={showModal ? "navModal" : "hidden"}>
+                <Link
+                  onClick={() => {
+                    setShowModal(false);
+                  }}
+                  to={"account"}
+                  className="modalItem"
+                >
+                  <FaRegUser />
+                  <p>Manage My Account</p>
+                </Link>
+                <div className="modalItem">
+                  <LuShoppingBag />
+                  <p>My Order</p>
+                </div>
+                <div className="modalItem">
+                  <CiStar />
+                  <p>My Reviews</p>
+                </div>
+                <div
+                  onClick={() => {
+                    setIsLogin(false);
+                    setShowModal(false);
+                    localStorage.setItem("token", "");
+                  }}
+                  className="modalItem"
+                >
+                  <CiLogout />
+                  <p>Logout</p>
+                </div>
               </div>
             </div>
             <Link to={"/"} className="logo">
