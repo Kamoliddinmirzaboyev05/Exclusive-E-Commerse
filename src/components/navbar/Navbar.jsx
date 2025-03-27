@@ -74,6 +74,7 @@ function Navbar() {
                   className="modalItem"
                 >
                   <FaRegUser />
+                  <h1>Sarvarbek</h1>
                   <p>Manage My Account</p>
                 </Link>
                 <div className="modalItem">
