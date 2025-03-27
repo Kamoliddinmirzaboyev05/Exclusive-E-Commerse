@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Account.css";
 import { Link } from "react-router-dom";
-function Account() {
-  const [userData, setUserData] = useState(null);
+import { link } from "../../config";
+import { toast } from "react-toastify";
+function Account({ userInfo }) {
   const [first_name, setFirstName] = useState(null);
   const [last_name, setLastName] = useState(null);
   const [address, setAdress] = useState(null);
@@ -10,40 +11,18 @@ function Account() {
   const [password, setPassword] = useState(null);
   const [phone, setPhone] = useState(null);
 
-  // Get userdata function
-  const getUserData = () => {
-    const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      `Bearer ${localStorage.getItem("token")}`
-    );
+  // writeUserData function
 
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(
-      "https://ecommercev01.pythonanywhere.com/user/detail/",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        setUserData(result);
-        console.log(result);
-        setFirstName(result?.first_name);
-        setLastName(result?.last_name);
-        setAdress(result?.address);
-        setPhone("+998889563848");
-        setEmail(result.email_or_phone);
-        setPassword(result.password)
-      })
-      .catch((error) => console.error(error));
+  const writeUserData = () => {
+    console.log(userInfo?.first_name);
+    setFirstName(userInfo?.first_name);
+    setLastName(userInfo?.last_name);
+    setAdress(userInfo?.address);
+    setEmail(userInfo?.email_or_phone);
   };
   useEffect(() => {
-    getUserData();
-  }, []);
+    writeUserData();
+  }, [userInfo]);
 
   // Update UserData function
   const updateUserData = () => {
@@ -70,12 +49,18 @@ function Account() {
       redirect: "follow",
     };
 
-    fetch(
-      "https://ecommercev01.pythonanywhere.com/user/update-profile/",
-      requestOptions
-    )
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+    fetch(`${link}/user/update-profile/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result?.phone) {
+          toast.error(result?.phone[0]);
+        } else if (result?.password[0]) {
+          toast.error(result?.password[0]);
+        } else {
+          toast.success("Ma'lumotlar muvaffaqiyatli o'zgartirildi!");
+        }
+        console.log(result);
+      })
       .catch((error) => console.error(error));
   };
   return (
@@ -107,7 +92,8 @@ function Account() {
           </div>
           <div className="rightForm">
             <form
-              onSubmit={() => {
+              onSubmit={(e) => {
+                e.preventDefault();
                 updateUserData();
               }}
               action="#"
@@ -182,7 +168,7 @@ function Account() {
                   onChange={(e) => {
                     setPassword(String(e.target.value));
                   }}
-                  value={password }
+                  value={password}
                   type="password"
                   placeholder="New Password"
                 />

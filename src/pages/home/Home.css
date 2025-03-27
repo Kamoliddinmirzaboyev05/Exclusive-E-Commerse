@@ -132,6 +132,7 @@
   flex-wrap: wrap;
   justify-content: start;
   gap: 40px;
+  padding-bottom: 60px;
 }
 
 /* Styling productCard */

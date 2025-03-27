@@ -1,7 +1,54 @@
 import React, { useState } from "react";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
-function ProductCard({ product }) {
+import { link } from "../../config";
+import { toast } from "react-toastify";
+function ProductCard({ product, liked }) {
+  // addtoliked function
+  const addToLiked = (id) => {
+    const myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("token")}`
+    );
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(`${link}/action/add-to-wishlist/?product_id=${id}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        toast.success(result.message);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  // Delete from liked function
+  const deleteFromLiked = (id) => {
+    const myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("token")}`
+    );
+
+    const requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(
+      `${link}/action/remove-from-wishlist/?product_id=${id}`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+  };
+
   return (
     <Link to={`/oneProduct/${product.id}`}>
       <div className="productCard">
@@ -14,19 +61,46 @@ function ProductCard({ product }) {
               %
             </p>
           </span>
-          <div className="hoverBtn heartBtn">
-            <i className="fa-regular fa-heart"></i>
-          </div>
-          <div className="hoverBtn eyeBtn">
-            <i className="fa-regular fa-eye"></i>
-          </div>
+          {!liked && (
+            <>
+              <div
+                onClick={(e) => {
+                  e.preventDefault();
+                  addToLiked(product.id);
+                }}
+                className="hoverBtn heartBtn"
+              >
+                <i
+                  className={
+                    product.is_liked
+                      ? "fa-solid fa-heart"
+                      : "fa-regular fa-heart"
+                  }
+                ></i>
+              </div>
+              <div className="hoverBtn eyeBtn">
+                <i className="fa-regular fa-eye"></i>
+              </div>
+            </>
+          )}
+          {liked && (
+            <div
+              onClick={(e) => {
+                e.preventDefault();
+                deleteFromLiked(product.id);
+              }}
+              className="deleteBtn hoverBtn"
+            >
+              <i className="fas fa-trash"></i>
+            </div>
+          )}
           <div className="productImg">
             <img
-              src={`https://ecommercev01.pythonanywhere.com/${product?.pictures[0]}`}
+              src={`${link}/${product?.pictures[0]}`}
               alt={product?.pictures}
             />
           </div>
-          <button className="addCartBtn">Add To Cart</button>
+          <button className={liked ? "addCartBtn activeAddCart" : "addCartBtn"}>Add To Cart</button>
         </div>
         <div className="productData">
           <h2>{String(product.title).slice(0, 15)}...</h2>

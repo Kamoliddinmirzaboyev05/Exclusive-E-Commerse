@@ -10,7 +10,8 @@ import { AiOutlineUser } from "react-icons/ai";
 import { CiLogout, CiStar } from "react-icons/ci";
 import { LuShoppingBag } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa";
-function Navbar() {
+import { Skeleton } from "@mui/material";
+function Navbar({ userInfo }) {
   const [til, setAge] = React.useState("");
   const [showModal, setShowModal] = useState(false);
   const handleChange = (event) => {
@@ -19,11 +20,11 @@ function Navbar() {
 
   // Check user logged
 
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
 
-  useEffect(() => {
-    localStorage.getItem("token") != "" ? setIsLogin(true) : false;
-  }, [localStorage.getItem("token")]);
+  // useEffect(() => {
+  //   localStorage.getItem("token") != "" ? setIsLogin(true) : false;
+  // }, [localStorage.getItem("token")]);
 
   const closeModal = (e) => {
     !e.target.classList.contains("navModal")
@@ -124,7 +125,7 @@ function Navbar() {
                 </button>
               </Link>
 
-              {isLogin && (
+              {userInfo?.id && (
                 <button
                   onClick={() => {
                     setShowModal(true);
@@ -132,6 +133,11 @@ function Navbar() {
                 >
                   <AiOutlineUser />
                 </button>
+              )}
+              {!userInfo && (
+                <Box sx={{ width: 15 }}>
+                  <Skeleton variant="h1" width={25} height={25} />
+                </Box>
               )}
             </div>
           </div>

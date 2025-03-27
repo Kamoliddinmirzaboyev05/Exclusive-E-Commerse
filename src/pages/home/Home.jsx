@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import { BiJoystick, BiSolidHomeAlt2 } from "react-icons/bi";
-import { CiDesktop, CiMobile1 } from "react-icons/ci";
-
+import { CiMobile1 } from "react-icons/ci";
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
 import { Link } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,6 +17,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { link } from "../../config";
+import { Card, CardContent, Typography } from "@mui/material";
 
 function Home() {
   const [products, setProducts] = useState(null);
@@ -25,13 +26,22 @@ function Home() {
 
   // Getdata function
   const getData = () => {
+    const myHeaders = new Headers();
+    if (localStorage.getItem("token")) {
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("token")}`
+      );
+    }
+
     const requestOptions = {
       method: "GET",
+      headers: myHeaders,
       redirect: "follow",
     };
 
     fetch(
-      `${link}/product/list/`,
+      "https://ecommercev01.pythonanywhere.com/product/list/",
       requestOptions
     )
       .then((response) => response.json())
@@ -45,8 +55,8 @@ function Home() {
     getData();
     getCategories();
   }, []);
+console.log(products);
 
-  // Getcategories function
 
   const getCategories = () => {
     const requestOptions = {
@@ -54,10 +64,7 @@ function Home() {
       redirect: "follow",
     };
 
-    fetch(
-      `${link}/product/categories/`,
-      requestOptions
-    )
+    fetch(`${link}/product/categories/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setCategories(result);
@@ -88,6 +95,19 @@ function Home() {
                   </div>
                 );
               })}
+              {!categories &&
+                [1, 2, 3, 4, 5, 6].map((item) => {
+                  return (
+                    <Box sx={{ width: 150 }}>
+                      <Skeleton
+                        style={{ marginBottom: "28px" }}
+                        variant="h1"
+                        width={170}
+                        height={20}
+                      />
+                    </Box>
+                  );
+                })}
             </div>
             <Swiper
               slidesPerView={1}
@@ -207,6 +227,33 @@ function Home() {
                   return;
                 }
               })}
+              {!categories &&
+                [1, 2, 3, 4].map((item) => {
+                  return (
+                    <Card sx={{ maxWidth: 300, p: 3 }}>
+                      {/* Mahsulot rasmi uchun Skeleton */}
+                      <Skeleton
+                        variant="rectangular"
+                        width={220}
+                        height={180}
+                      />
+
+                      <CardContent>
+                        <Skeleton variant="text" width="80%" height={30} />
+
+                        <Skeleton variant="text" width="40%" height={20} />
+
+                        <Skeleton
+                          style={{ marginBottom: "20px" }}
+                          variant="rectangular"
+                          width="100%"
+                          height={40}
+                          sx={{ mt: 2 }}
+                        />
+                      </CardContent>
+                    </Card>
+                  );
+                })}
             </div>
             <div className="view">
               <button
@@ -239,6 +286,18 @@ function Home() {
                   </div>
                 );
               })}
+              {!categories &&
+                [1, 2, 3, 4, 5, 6].map((item) => {
+                  return (
+                    <Card sx={{ maxWidth: 300, p: 3 }}>
+                      <Skeleton
+                        variant="rectangular"
+                        width={120}
+                        height={120}
+                      />
+                    </Card>
+                  );
+                })}
             </div>
           </div>
         </section>
@@ -276,6 +335,33 @@ function Home() {
                   }
                 })}
               </Swiper>
+              {!categories &&
+                [1, 2, 3, 4].map((item) => {
+                  return (
+                    <Card sx={{ maxWidth: 300, p: 3 }}>
+                      {/* Mahsulot rasmi uchun Skeleton */}
+                      <Skeleton
+                        variant="rectangular"
+                        width={220}
+                        height={180}
+                      />
+
+                      <CardContent>
+                        <Skeleton variant="text" width="80%" height={30} />
+
+                        <Skeleton variant="text" width="40%" height={20} />
+
+                        <Skeleton
+                          style={{ marginBottom: "20px" }}
+                          variant="rectangular"
+                          width="100%"
+                          height={40}
+                          sx={{ mt: 2 }}
+                        />
+                      </CardContent>
+                    </Card>
+                  );
+                })}
             </div>
           </div>
         </section>

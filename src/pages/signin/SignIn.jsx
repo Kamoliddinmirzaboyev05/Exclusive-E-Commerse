@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { link } from "../../config";
 
-function SignIn() {
+function SignIn({ getUserData }) {
   const [email_or_phone, setEmailorPassword] = useState(null);
   const [password, setPassword] = useState(null);
+
   const navigate = useNavigate();
+
+  // getuser function
   const getUser = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -28,9 +31,14 @@ function SignIn() {
       .then((response) => response.json())
       .then((result) => {
         console.log(result.access);
-
-        localStorage.setItem("token", result.access);
-        navigate("/");
+        if (result.access) {
+          localStorage.setItem("token", result.access);
+          getUserData();
+          toast.success("Tizimga muvaffaqiyatli kirdingiz!");
+          navigate("/");
+        } else {
+          toast.error("Email yoki parol noto'g'ri!");
+        }
       })
       .catch((error) => console.error(error));
   };
