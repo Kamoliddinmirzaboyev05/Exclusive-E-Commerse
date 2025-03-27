@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./SignUp.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from "react-toastify";
+import { link } from "../../config";
 function SignUp() {
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
@@ -27,7 +28,7 @@ function SignUp() {
     };
 
     fetch(
-      "https://ecommercev01.pythonanywhere.com/user/register/",
+      `${link}/user/register/`,
       requestOptions
     )
       .then((response) => response.json())
@@ -39,7 +40,7 @@ function SignUp() {
         } else if (result?.password) {
           toast.error(result?.password[0]);
         } else if (result.message) {
-          toast.error(result.message);
+          toast.success(result.message);
           navigate("/signin");
         }
       })
@@ -48,19 +49,7 @@ function SignUp() {
   return (
     <>
       <div className="signUp">
-        <ToastContainer
-          position="top-right"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          transition={Bounce}
-        />
+       
         <div className="container">
           <div className="signUpImg">
             <img src="/Side Image (1).png" alt="" />

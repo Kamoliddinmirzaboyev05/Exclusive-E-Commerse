@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./OneProduct.css";
 import { useParams } from "react-router-dom";
+import { link } from "../../config";
 function OneProduct() {
   const { id } = useParams();
   const [oneProductData, setOneProductData] = useState(null);
@@ -26,7 +27,7 @@ function OneProduct() {
     };
 
     fetch(
-      `https://ecommercev01.pythonanywhere.com/product/detail/?product_id=${id}`,
+      `${link}/product/detail/?product_id=${id}`,
       requestOptions
     )
       .then((response) => response.json())

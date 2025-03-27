@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./SignIn.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { link } from "../../config";
 
 function SignIn() {
   const [email_or_phone, setEmailorPassword] = useState(null);
   const [password, setPassword] = useState(null);
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const getUser = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -22,12 +24,13 @@ const navigate = useNavigate()
       redirect: "follow",
     };
 
-    fetch("https://ecommercev01.pythonanywhere.com/user/token/", requestOptions)
+    fetch(`${link}/user/token/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log(result.access);
+
         localStorage.setItem("token", result.access);
-        navigate("/")
+        navigate("/");
       })
       .catch((error) => console.error(error));
   };

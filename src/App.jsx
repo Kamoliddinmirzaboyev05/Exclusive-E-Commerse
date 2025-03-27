@@ -14,9 +14,55 @@ import Account from "./pages/account/Account";
 import Cart from "./pages/cart/Cart";
 import Checkout from "./pages/checkout/Checkout";
 import Wishlist from "./pages/wishlist/Wishlist";
+import { Bounce, ToastContainer } from "react-toastify";
 function App() {
+  // const [userInfo, setUserInfo] = null;
+  // const getUserData = () => {
+  //   const myHeaders = new Headers();
+  //   myHeaders.append(
+  //     "Authorization",
+  //     `Bearer ${localStorage.getItem("token")}`
+  //   );
+
+  //   const requestOptions = {
+  //     method: "GET",
+  //     headers: myHeaders,
+  //     redirect: "follow",
+  //   };
+
+  //   fetch(
+  //     "https://ecommercev01.pythonanywhere.com/user/detail/",
+  //     requestOptions
+  //   )
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       setUserInfo(result);
+  //       // setUserData(result);
+  //       // console.log(result);
+  //       // setFirstName(result?.first_name);
+  //       // setLastName(result?.last_name);
+  //       // setAdress(result?.address);
+  //       // setPhone("+998889563848");
+  //       // setEmail(result.email_or_phone);
+  //       // setPassword(result.password);
+  //     })
+  //     .catch((error) => console.error(error));
+  // };
   return (
     <BrowserRouter>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -16,6 +16,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { link } from "../../config";
 
 function Home() {
   const [products, setProducts] = useState(null);
@@ -30,7 +31,7 @@ function Home() {
     };
 
     fetch(
-      "https://ecommercev01.pythonanywhere.com/product/list/",
+      `${link}/product/list/`,
       requestOptions
     )
       .then((response) => response.json())
@@ -54,7 +55,7 @@ function Home() {
     };
 
     fetch(
-      "https://ecommercev01.pythonanywhere.com/product/categories/",
+      `${link}/product/categories/`,
       requestOptions
     )
       .then((response) => response.json())
