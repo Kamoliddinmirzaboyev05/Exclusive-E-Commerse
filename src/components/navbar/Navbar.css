@@ -34,7 +34,7 @@
 .navModal {
   position: absolute;
   top: 80px;
-  right: 350px;
+  right: 150px;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
   z-index: 99;
