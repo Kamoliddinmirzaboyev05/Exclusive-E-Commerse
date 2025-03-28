@@ -4,38 +4,10 @@ import ProductCard from "../../components/productCard/ProductCard";
 import { Card, CardContent, Skeleton } from "@mui/material";
 import { link } from "../../config";
 
-function Wishlist() {
-  const [likedProducts, setLikedProducts] = useState(null);
-  // getmywishlist function
-  const getWishlist = () => {
-    const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      `Bearer ${localStorage.getItem("token")}`
-    );
-
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(
-      `${link}/action/my-wishlist/`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        setLikedProducts(result);
-      })
-      .catch((error) => console.error(error));
-  };
-  console.log(likedProducts);
-
+function Wishlist({ likedProducts, getWishlist }) {
   useEffect(() => {
     getWishlist();
   }, []);
-
   return (
     <>
       <div className="WishlistOne">
@@ -51,7 +23,7 @@ function Wishlist() {
             </div>
             <div className="productsBlock">
               {likedProducts?.map((product) => {
-                return <ProductCard product={product} liked={"true"} />;
+                return <ProductCard getWishlist={getWishlist}  product={product} liked={"true"} />;
               })}
               {!likedProducts &&
                 [1, 2, 3, 4].map((item) => {

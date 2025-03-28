@@ -35,20 +35,35 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         setUserInfo(result);
-        // setUserData(result);
-        // console.log(result);
-        // setFirstName(result?.first_name);
-        // setLastName(result?.last_name);
-        // setAdress(result?.address);
-        // setPhone("+998889563848");
-        // setEmail(result.email_or_phone);
-        // setPassword(result.password);
       })
       .catch((error) => console.error(error));
   };
   useEffect(() => {
     getUserData();
   }, []);
+  const [likedProducts, setLikedProducts] = useState(null);
+  // getmywishlist function
+  const getWishlist = () => {
+    const myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("token")}`
+    );
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(`${link}/action/my-wishlist/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setLikedProducts(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
 
   return (
     <BrowserRouter>
@@ -67,13 +82,13 @@ function App() {
       />
       <Navbar userInfo={userInfo} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home getWishlist={getWishlist} />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/account" element={<Account userInfo={userInfo} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/wishlist" element={<Wishlist getWishlist={getWishlist} likedProducts={likedProducts} />} />
 
         <Route path="/signin" element={<SignIn getUserData={getUserData} />} />
         <Route path="/signup" element={<SignUp />} />

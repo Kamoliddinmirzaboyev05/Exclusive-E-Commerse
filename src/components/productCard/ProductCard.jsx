@@ -3,7 +3,7 @@ import "./ProductCard.css";
 import { Link } from "react-router-dom";
 import { link } from "../../config";
 import { toast } from "react-toastify";
-function ProductCard({ product, liked }) {
+function ProductCard({ product, getData, getWishlist, liked }) {
   // addtoliked function
   const addToLiked = (id) => {
     const myHeaders = new Headers();
@@ -22,6 +22,7 @@ function ProductCard({ product, liked }) {
       .then((response) => response.json())
       .then((result) => {
         toast.success(result.message);
+        getData();
       })
       .catch((error) => console.error(error));
   };
@@ -45,9 +46,16 @@ function ProductCard({ product, liked }) {
       requestOptions
     )
       .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((result) => {
+        toast.info("Maxsulot istaklar ro'yhatidan olib tashlandi!");
+      })
       .catch((error) => console.error(error));
   };
+
+  // Add to Cart function
+  // const addToCart = ()=>{
+
+  // }
 
   return (
     <Link to={`/oneProduct/${product.id}`}>
@@ -88,6 +96,7 @@ function ProductCard({ product, liked }) {
               onClick={(e) => {
                 e.preventDefault();
                 deleteFromLiked(product.id);
+                getWishlist();
               }}
               className="deleteBtn hoverBtn"
             >
@@ -100,7 +109,16 @@ function ProductCard({ product, liked }) {
               alt={product?.pictures}
             />
           </div>
-          <button className={liked ? "addCartBtn activeAddCart" : "addCartBtn"}>Add To Cart</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              addToCart(product.id);
+              getWishlist();
+            }}
+            className={liked ? "addCartBtn activeAddCart" : "addCartBtn"}
+          >
+            Add To Cart
+          </button>
         </div>
         <div className="productData">
           <h2>{String(product.title).slice(0, 15)}...</h2>

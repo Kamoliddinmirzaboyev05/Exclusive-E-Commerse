@@ -19,7 +19,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { link } from "../../config";
 import { Card, CardContent, Typography } from "@mui/material";
 
-function Home() {
+function Home({getWishlist}) {
   const [products, setProducts] = useState(null);
   const [categories, setCategories] = useState(null);
   const [productCount, setProductCount] = useState(4);
@@ -222,7 +222,7 @@ console.log(products);
             <div className="productsBlock">
               {products?.map((product, index) => {
                 if (index < productCount) {
-                  return <ProductCard key={product.id} product={product} />;
+                  return <ProductCard key={product.id} getData={getData} getWishlist={getWishlist} product={product} />;
                 } else {
                   return;
                 }
