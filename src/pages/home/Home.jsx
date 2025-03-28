@@ -55,7 +55,6 @@ function Home({getWishlist}) {
     getData();
     getCategories();
   }, []);
-console.log(products);
 
 
   const getCategories = () => {
