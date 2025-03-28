@@ -8,6 +8,7 @@ function Wishlist({ likedProducts, getWishlist }) {
   useEffect(() => {
     getWishlist();
   }, []);
+  
   return (
     <>
       <div className="WishlistOne">
@@ -22,8 +23,17 @@ function Wishlist({ likedProducts, getWishlist }) {
               </div>
             </div>
             <div className="productsBlock">
+              <div className={!likedProducts?.length > 0  ? "emptyText" : "hidden"}>
+                <h1>Istaklar ro'yhatida hali mahsulot mavjud emas!</h1>
+              </div>
               {likedProducts?.map((product) => {
-                return <ProductCard getWishlist={getWishlist}  product={product} liked={"true"} />;
+                return (
+                  <ProductCard
+                    getWishlist={getWishlist}
+                    product={product}
+                    liked={"true"}
+                  />
+                );
               })}
               {!likedProducts &&
                 [1, 2, 3, 4].map((item) => {

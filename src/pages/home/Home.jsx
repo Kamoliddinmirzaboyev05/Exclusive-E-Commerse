@@ -55,7 +55,10 @@ function Home({ getWishlist }) {
     getData();
     getCategories();
   }, []);
+<<<<<<< HEAD
   console.log(products);
+=======
+>>>>>>> e6239f1982e662ef846455bc3fc0266e5dff4749
 
 
   const getCategories = () => {
