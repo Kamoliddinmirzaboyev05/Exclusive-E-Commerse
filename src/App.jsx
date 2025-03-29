@@ -19,6 +19,8 @@ import { link } from "./config";
 import Search from "./pages/search/Search";
 function App() {
   const [userInfo, setUserInfo] = useState(null);
+  const [products, setProducts] = useState(null);
+
   const getUserData = () => {
     const myHeaders = new Headers();
     myHeaders.append(
@@ -42,6 +44,31 @@ function App() {
   useEffect(() => {
     getUserData();
   }, []);
+
+  // Getdata function
+  const getData = () => {
+    const myHeaders = new Headers();
+    if (localStorage.getItem("token")) {
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("token")}`
+      );
+    }
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(`${link}/product/list/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setProducts(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
   const [likedProducts, setLikedProducts] = useState(null);
   // getmywishlist function
   const getWishlist = () => {
@@ -65,7 +92,6 @@ function App() {
       .catch((error) => console.error(error));
   };
 
-
   return (
     <BrowserRouter>
       <ToastContainer
@@ -81,16 +107,30 @@ function App() {
         theme="light"
         transition={Bounce}
       />
-      <Navbar userInfo={userInfo} />
+      <Navbar likedProducts={likedProducts} userInfo={userInfo} />
       <Routes>
-        <Route path="/" element={<Home getWishlist={getWishlist} />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              products={products}
+              getData={getData}
+              getWishlist={getWishlist}
+            />
+          }
+        />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/account" element={<Account userInfo={userInfo} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/wishlist" element={<Wishlist getWishlist={getWishlist} likedProducts={likedProducts} />} />
+        <Route path="/search" element={<Search products={products} />} />
+        <Route
+          path="/wishlist"
+          element={
+            <Wishlist getWishlist={getWishlist} likedProducts={likedProducts} />
+          }
+        />
 
         <Route path="/signin" element={<SignIn getUserData={getUserData} />} />
         <Route path="/signup" element={<SignUp />} />

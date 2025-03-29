@@ -11,7 +11,7 @@ import { CiLogout, CiStar } from "react-icons/ci";
 import { LuShoppingBag } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa";
 import { Skeleton } from "@mui/material";
-function Navbar({ userInfo }) {
+function Navbar({ userInfo, likedProducts }) {
   const [til, setAge] = React.useState("");
   const [showModal, setShowModal] = useState(false);
   const handleChange = (event) => {
@@ -115,11 +115,14 @@ function Navbar({ userInfo }) {
               </form>
               <Link to={"/wishlist"}>
                 <button>
+                  <p className="productsLength">{likedProducts?.length}</p>
                   <i className="fa-regular fa-heart"></i>
                 </button>
               </Link>
               <Link to={"/cart"}>
                 <button>
+                  <p className="productsLength">0</p>
+
                   <i className="fa fa-shopping-cart"></i>
                 </button>
               </Link>

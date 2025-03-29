@@ -19,37 +19,11 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { link } from "../../config";
 import { Card, CardContent, Typography } from "@mui/material";
 
-function Home({ getWishlist }) {
-  const [products, setProducts] = useState(null);
+function Home({ products, getData, getWishlist }) {
   const [categories, setCategories] = useState(null);
   const [productCount, setProductCount] = useState(4);
 
   // Getdata function
-  const getData = () => {
-    const myHeaders = new Headers();
-    if (localStorage.getItem("token")) {
-      myHeaders.append(
-        "Authorization",
-        `Bearer ${localStorage.getItem("token")}`
-      );
-    }
-
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(
-      "https://ecommercev01.pythonanywhere.com/product/list/",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        setProducts(result);
-      })
-      .catch((error) => console.error(error));
-  };
 
   useEffect(() => {
     getData();
@@ -220,7 +194,14 @@ function Home({ getWishlist }) {
             <div className="productsBlock">
               {products?.map((product, index) => {
                 if (index < productCount) {
-                  return <ProductCard key={product.id} getData={getData} getWishlist={getWishlist} product={product} />;
+                  return (
+                    <ProductCard
+                      key={product.id}
+                      getData={getData}
+                      getWishlist={getWishlist}
+                      product={product}
+                    />
+                  );
                 } else {
                   return;
                 }
