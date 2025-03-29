@@ -16,6 +16,7 @@ import Checkout from "./pages/checkout/Checkout";
 import Wishlist from "./pages/wishlist/Wishlist";
 import { Bounce, ToastContainer } from "react-toastify";
 import { link } from "./config";
+import Search from "./pages/search/Search";
 function App() {
   const [userInfo, setUserInfo] = useState(null);
   const getUserData = () => {
@@ -88,6 +89,7 @@ function App() {
         <Route path="/account" element={<Account userInfo={userInfo} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/wishlist" element={<Wishlist getWishlist={getWishlist} likedProducts={likedProducts} />} />
 
         <Route path="/signin" element={<SignIn getUserData={getUserData} />} />

@@ -5,7 +5,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { CiLogout, CiStar } from "react-icons/ci";
 import { LuShoppingBag } from "react-icons/lu";
@@ -18,14 +18,7 @@ function Navbar({ userInfo }) {
     setAge(event.target.value);
   };
 
-  // Check user logged
-
-  // const [isLogin, setIsLogin] = useState(false);
-
-  // useEffect(() => {
-  //   localStorage.getItem("token") != "" ? setIsLogin(true) : false;
-  // }, [localStorage.getItem("token")]);
-
+  const navigate = useNavigate();
   const closeModal = (e) => {
     !e.target.classList.contains("navModal")
       ? setShowModal(false)
@@ -109,7 +102,13 @@ function Navbar({ userInfo }) {
             </div>
             <div className="navBtns">
               <form action="#">
-                <input type="text" placeholder="What are you looking for?" />
+                <input
+                  onFocus={() => {
+                    navigate("/search");
+                  }}
+                  type="text"
+                  placeholder="What are you looking for?"
+                />
                 <button>
                   <i className="fas fa-search"></i>
                 </button>
