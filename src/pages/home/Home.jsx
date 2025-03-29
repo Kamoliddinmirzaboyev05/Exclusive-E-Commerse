@@ -19,7 +19,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { link } from "../../config";
 import { Card, CardContent, Typography } from "@mui/material";
 
-function Home({getWishlist}) {
+function Home({ getWishlist }) {
   const [products, setProducts] = useState(null);
   const [categories, setCategories] = useState(null);
   const [productCount, setProductCount] = useState(4);
@@ -55,7 +55,6 @@ function Home({getWishlist}) {
     getData();
     getCategories();
   }, []);
-
 
   const getCategories = () => {
     const requestOptions = {
