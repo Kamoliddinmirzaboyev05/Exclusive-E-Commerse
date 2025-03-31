@@ -12,24 +12,27 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-// import './styles.css';
-
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { link } from "../../config";
 import { Card, CardContent, Typography } from "@mui/material";
+import { toast } from "react-toastify";
 
-function Home({ products, getData, getWishlist }) {
+function Home({ products, likedProducts, getData, getWishlist }) {
   const [categories, setCategories] = useState(null);
   const [productCount, setProductCount] = useState(4);
-
-  // Getdata function
-
+  const [showModal, setShowModal] = useState(false);
+  const [oneProductData, setOneProductData] = useState(null);
+  const [productId, setProductId] = useState(null);
+  const [colorName, setColorName] = useState(null);
+  const [sizeVal, setSizeVal] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   useEffect(() => {
     getData();
     getCategories();
   }, []);
 
+  // getCategories function
   const getCategories = () => {
     const requestOptions = {
       method: "GET",
@@ -44,15 +47,71 @@ function Home({ products, getData, getWishlist }) {
       .catch((error) => console.error(error));
   };
 
-  // Timer function
-  const timerFunction = () => {
-    const [time, setTime] = useState(87400);
-    setInterval(() => {
-      // console.log(time);
-      // setTime(time - 1);
-    }, 1000);
+  // getOneProductFunction
+  const getOneProduct = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+    fetch(`${link}/product/detail/?product_id=${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setOneProductData(result);
+      })
+      .catch((error) => console.error(error));
   };
-  timerFunction();
+
+  useEffect(() => {
+    getOneProduct();
+  }, [productId]);
+
+  // closemodal function
+  const closeModal = (e) => {
+    if (e.target.classList.contains("cartModalBack")) {
+      setShowModal(false);
+      setQuantity(1);
+      setColorName(null);
+      setSizeVal(null);
+    } else {
+      setShowModal(true);
+    }
+  };
+  // Add to cart function
+
+  const addToCart = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("token")}`
+    );
+
+    const raw = JSON.stringify({
+      product_id: productId,
+      quantity: quantity,
+      properties: {
+        color: colorName,
+        ...(sizeVal !== null && { size: sizeVal }),
+      },
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(
+      "https://ecommercev01.pythonanywhere.com/order/add-to-cart/",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        toast.success(result)
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="home">
       <header>
@@ -150,6 +209,112 @@ function Home({ products, getData, getWishlist }) {
 
       <main>
         <section className="flashSales">
+          <div
+            onClick={(e) => {
+              closeModal(e);
+            }}
+            className={showModal ? "cartModalBack" : "hidden"}
+          >
+            <div className="cartModal">
+              <div className="leftSide">
+                <div className="modalImgBox">
+                  <img
+                    src={`${link}/${oneProductData?.pictures[0].file}`}
+                    alt={oneProductData?.pictures[0].file}
+                  />
+                </div>
+                <button className="seeMoreBtn">Read more</button>
+              </div>
+              <div className="rightSide">
+                <h2>Product nomi</h2>
+                <div className="selectColor">
+                  <div className="partTitle">
+                    <h3>Color: </h3>
+                    <p>{colorName ? colorName : null}</p>
+                  </div>
+                  <div className="selectColors">
+                    {oneProductData?.properties.color.map((color, index) => {
+                      return (
+                        <div
+                          className={
+                            colorName == oneProductData.properties.color[index]
+                              ? "color active"
+                              : "color"
+                          }
+                          onClick={() => {
+                            setColorName(
+                              oneProductData?.properties.color[index]
+                            );
+                          }}
+                          style={{
+                            backgroundColor:
+                              oneProductData?.properties.color[index],
+                          }}
+                        ></div>
+                      );
+                    })}
+                  </div>
+                </div>
+                {oneProductData?.properties.size && (
+                  <div className="selectSize">
+                    <div className="partTitle">
+                      <h3>Size: </h3>
+                      <p>{sizeVal ? sizeVal : null}</p>
+                    </div>
+                    <div className="selectSizes">
+                      {oneProductData.properties.size.map((size, index) => {
+                        return (
+                          <div
+                            onClick={() => {
+                              setSizeVal(size);
+                            }}
+                            className={
+                              sizeVal == oneProductData.properties.size[index]
+                                ? "sizeItem active"
+                                : "sizeItem"
+                            }
+                          >
+                            <p>{size}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+                <div className="selectQuantity">
+                  <div className="partTitle">
+                    <h3>Quantity:</h3>
+                    <p className="productQuantity">{quantity}</p>
+                  </div>
+                  <div className="counter">
+                    <button
+                      onClick={() => {
+                        setQuantity(quantity > 1 ? quantity - 1 : quantity);
+                      }}
+                    >
+                      -
+                    </button>
+                    <p>{quantity}</p>
+                    <button
+                      onClick={() => {
+                        setQuantity(quantity + 1);
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div className="partTitle">
+                  <h3>Price: </h3>
+                  <p>200000</p>
+                  <p className="nonActivePrice">240000</p>
+                </div>
+                <button onClick={()=>{
+                  addToCart()
+                }} className="viewBtn">Add to Cart</button>
+              </div>
+            </div>
+          </div>
           <div className="container">
             <div className="sectionType">
               <span className="rec"></span>
@@ -196,6 +361,8 @@ function Home({ products, getData, getWishlist }) {
                 if (index < productCount) {
                   return (
                     <ProductCard
+                      setProductId={setProductId}
+                      setShowModal={setShowModal}
                       key={product.id}
                       getData={getData}
                       getWishlist={getWishlist}
@@ -306,7 +473,11 @@ function Home({ products, getData, getWishlist }) {
                   if (product.price > product.discount_price) {
                     return (
                       <SwiperSlide>
-                        <ProductCard key={product.id} product={product} />
+                        <ProductCard
+                          setShowModal={setShowModal}
+                          key={product.id}
+                          product={product}
+                        />
                       </SwiperSlide>
                     );
                   } else {
