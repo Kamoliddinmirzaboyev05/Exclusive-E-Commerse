@@ -26,10 +26,7 @@ function OneProduct() {
       redirect: "follow",
     };
 
-    fetch(
-      `${link}/product/detail/?product_id=${id}`,
-      requestOptions
-    )
+    fetch(`${link}/product/detail/?product_id=${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
@@ -38,7 +35,6 @@ function OneProduct() {
       })
       .catch((error) => console.error(error));
   };
-  console.log(oneProductData);
 
   useEffect(() => {
     getOneProduct();
@@ -190,7 +186,7 @@ function OneProduct() {
                                 : "span"
                             }
                           >
-                            <p>{oneProductData.properties.size[index]}</p>
+                            <p>{oneProductData?.properties.size[index]}</p>
                           </span>
                         );
                       })}

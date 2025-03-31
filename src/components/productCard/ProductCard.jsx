@@ -3,7 +3,14 @@ import "./ProductCard.css";
 import { Link } from "react-router-dom";
 import { link } from "../../config";
 import { toast } from "react-toastify";
-function ProductCard({ product, getData, getWishlist, liked }) {
+function ProductCard({
+  product,
+  setProductId,
+  setShowModal,
+  getData,
+  getWishlist,
+  liked,
+}) {
   // addtoliked function
   const addToLiked = (id) => {
     const myHeaders = new Headers();
@@ -52,11 +59,6 @@ function ProductCard({ product, getData, getWishlist, liked }) {
       .catch((error) => console.error(error));
   };
 
-  // Add to Cart function
-  // const addToCart = ()=>{
-
-  // }
-
   return (
     <Link to={`/oneProduct/${product.id}`}>
       <div className="productCard">
@@ -96,6 +98,8 @@ function ProductCard({ product, getData, getWishlist, liked }) {
               onClick={(e) => {
                 e.preventDefault();
                 deleteFromLiked(product.id);
+                console.log("salom");
+
                 getWishlist();
               }}
               className="deleteBtn hoverBtn"
@@ -111,8 +115,9 @@ function ProductCard({ product, getData, getWishlist, liked }) {
           </div>
           <button
             onClick={(e) => {
+              setProductId(product?.id);
               e.preventDefault();
-              addToCart(product.id);
+              setShowModal(true);
               getWishlist();
             }}
             className={liked ? "addCartBtn activeAddCart" : "addCartBtn"}

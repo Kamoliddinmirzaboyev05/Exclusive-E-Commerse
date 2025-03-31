@@ -11,7 +11,7 @@ import { CiLogout, CiStar } from "react-icons/ci";
 import { LuShoppingBag } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa";
 import { Skeleton } from "@mui/material";
-function Navbar({ userInfo, likedProducts }) {
+function Navbar({ userInfo, getWishlist, likedProducts }) {
   const [til, setAge] = React.useState("");
   const [showModal, setShowModal] = useState(false);
   const handleChange = (event) => {
@@ -24,6 +24,11 @@ function Navbar({ userInfo, likedProducts }) {
       ? setShowModal(false)
       : setShowModal(true);
   };
+
+  useEffect(() => {
+    getWishlist();
+  }, [likedProducts]);
+
   return (
     <div className="navbar">
       <nav>

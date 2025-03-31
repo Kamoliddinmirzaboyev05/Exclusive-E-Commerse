@@ -21,6 +21,7 @@ function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [products, setProducts] = useState(null);
 
+  // Get userdata function
   const getUserData = () => {
     const myHeaders = new Headers();
     myHeaders.append(
@@ -70,6 +71,7 @@ function App() {
   };
 
   const [likedProducts, setLikedProducts] = useState(null);
+
   // getmywishlist function
   const getWishlist = () => {
     const myHeaders = new Headers();
@@ -107,12 +109,17 @@ function App() {
         theme="light"
         transition={Bounce}
       />
-      <Navbar likedProducts={likedProducts} userInfo={userInfo} />
+      <Navbar
+        getWishlist={getWishlist}
+        likedProducts={likedProducts}
+        userInfo={userInfo}
+      />
       <Routes>
         <Route
           path="/"
           element={
             <Home
+              likedProducts={likedProducts}
               products={products}
               getData={getData}
               getWishlist={getWishlist}
