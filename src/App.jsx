@@ -20,6 +20,7 @@ import Search from "./pages/search/Search";
 function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [products, setProducts] = useState(null);
+  const [searchVal, setSearchVal] = useState(null);
 
   // Get userdata function
   const getUserData = () => {
@@ -113,6 +114,7 @@ function App() {
         getWishlist={getWishlist}
         likedProducts={likedProducts}
         userInfo={userInfo}
+        setSearchVal={setSearchVal}
       />
       <Routes>
         <Route
@@ -131,7 +133,10 @@ function App() {
         <Route path="/account" element={<Account userInfo={userInfo} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/search" element={<Search products={products} />} />
+        <Route
+          path="/search"
+          element={<Search searchVal={searchVal} products={products} />}
+        />
         <Route
           path="/wishlist"
           element={
