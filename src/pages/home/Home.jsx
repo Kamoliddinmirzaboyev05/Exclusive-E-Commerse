@@ -109,12 +109,42 @@ function Home({ products, likedProducts, getData, getWishlist }) {
       })
       .catch((error) => console.error(error));
   };
+
+  // Discount timer function
+  const targetDate = new Date("2025-04-05T23:59:59");
+  const calculateTimeLeft = () => {
+    const difference = targetDate - new Date();
+    if (difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / (1000 * 60)) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const newTime = calculateTimeLeft();
+      setTimeLeft(newTime);
+      console.log("salom");
+    }, [1000]);
+
+    return () => clearInterval(timer);
+  }, [targetDate]);
   return (
     <div className="home">
       <header>
         <div className="hero">
           <div className="container">
             <div className="heroFilter">
+              <p>
+                {timeLeft.days} kun {timeLeft.hours} soat {timeLeft.minutes}{" "}
+                daqiqa {timeLeft.seconds} soniya
+              </p>
               {categories?.map((category) => {
                 return (
                   <div key={category.id} className="row">
@@ -335,23 +365,42 @@ function Home({ products, likedProducts, getData, getWishlist }) {
                 <h2 className="sectionTitle">Flash Sales</h2>
                 <div className="timer">
                   <div className="value">
+                    {/* <p>
+                      {timeLeft.hours} soat {timeLeft.minutes} daqiqa{" "}
+                      {timeLeft.seconds} soniya
+                    </p> */}
                     <p>Days</p>
-                    <h2>03</h2>
+                    <h2>
+                      0
+                      {timeLeft.days < 10 ? timeLeft.days : "0" + timeLeft.days}
+                    </h2>
                   </div>
                   <p className="doubleDot">:</p>
                   <div className="value">
                     <p>Hours</p>
-                    <h2>23</h2>
+                    <h2>
+                      {timeLeft.hours > 10
+                        ? timeLeft.hours
+                        : "0" + timeLeft.hours}
+                    </h2>
                   </div>
                   <p className="doubleDot">:</p>
                   <div className="value">
                     <p>Minutes</p>
-                    <h2>19</h2>
+                    <h2>
+                      {timeLeft.minutes > 10
+                        ? timeLeft.minutes
+                        : "0" + timeLeft.minutes}
+                    </h2>
                   </div>
                   <p className="doubleDot">:</p>
                   <div className="value">
                     <p>Seconds</p>
-                    <h2>56</h2>
+                    <h2>
+                      {timeLeft.seconds > 10
+                        ? timeLeft.seconds
+                        : "0" + timeLeft.seconds}
+                    </h2>
                   </div>
                 </div>
               </div>

@@ -100,13 +100,17 @@
 }
 .productRate {
   display: flex;
-  align-items: center;
+  align-items: center !important;
   gap: 8px;
 }
 .productRate p {
   color: #808080;
   font-size: 16px;
   font-weight: 700;
+  padding-bottom: 0;
+}
+.productRate img{
+  width: 120px !important;
 }
 a {
   text-decoration: none;
