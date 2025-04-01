@@ -12,7 +12,7 @@ import { LuShoppingBag } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa";
 import { Skeleton } from "@mui/material";
 import { link } from "../../config";
-function Navbar({ userInfo, getWishlist, likedProducts }) {
+function Navbar({ userInfo, getWishlist, setSearchVal, likedProducts }) {
   const [til, setAge] = React.useState("");
   const [showModal, setShowModal] = useState(false);
   const handleChange = (event) => {
@@ -22,7 +22,7 @@ function Navbar({ userInfo, getWishlist, likedProducts }) {
   const navigate = useNavigate();
   const closeModal = (e) => {
     !e.target.classList.contains("navModal")
-      ? setShowModal(false)
+      ? setShowModal(null)
       : setShowModal(true);
   };
 
@@ -49,8 +49,6 @@ function Navbar({ userInfo, getWishlist, likedProducts }) {
     fetch(`${link}/order/cart-items/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
-        
         setCartProducts(result);
       })
       .catch((error) => console.error(error));
@@ -141,6 +139,9 @@ function Navbar({ userInfo, getWishlist, likedProducts }) {
                 <input
                   onFocus={() => {
                     navigate("/search");
+                  }}
+                  onChange={(e) => {
+                    setSearchVal(e.target.value);
                   }}
                   type="text"
                   placeholder="What are you looking for?"

@@ -2,7 +2,11 @@ import React from "react";
 import "./Search.css";
 import ProductCard from "../../components/productCard/ProductCard";
 import { Card, CardContent, Skeleton } from "@mui/material";
-function Search({ products }) {
+function Search({ products, searchVal }) {
+  const filteredProducts = products?.filter((product) => {
+    return product.title.toLowerCase().includes(searchVal.toLowerCase());
+  });
+
   return (
     <div className="searchPage">
       <div className="container">
@@ -10,7 +14,7 @@ function Search({ products }) {
           <h2 className="sectionTitle">Search</h2>
         </div>
         <div className="productsBlock">
-          {products?.map((product) => {
+          {filteredProducts?.map((product) => {
             return <ProductCard key={product.id} product={product} />;
           })}
           {!products &&
@@ -19,12 +23,9 @@ function Search({ products }) {
                 <Card sx={{ maxWidth: 300, p: 3 }}>
                   {/* Mahsulot rasmi uchun Skeleton */}
                   <Skeleton variant="rectangular" width={220} height={180} />
-
                   <CardContent>
                     <Skeleton variant="text" width="80%" height={30} />
-
                     <Skeleton variant="text" width="40%" height={20} />
-
                     <Skeleton
                       style={{ marginBottom: "20px" }}
                       variant="rectangular"
