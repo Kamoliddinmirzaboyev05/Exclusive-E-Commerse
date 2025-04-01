@@ -102,13 +102,10 @@ function Home({ products, likedProducts, getData, getWishlist }) {
       redirect: "follow",
     };
 
-    fetch(
-      "https://ecommercev01.pythonanywhere.com/order/add-to-cart/",
-      requestOptions
-    )
+    fetch(`${link}/order/add-to-cart/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        toast.success(result)
+        toast.success(result);
       })
       .catch((error) => console.error(error));
   };
@@ -309,9 +306,22 @@ function Home({ products, likedProducts, getData, getWishlist }) {
                   <p>200000</p>
                   <p className="nonActivePrice">240000</p>
                 </div>
-                <button onClick={()=>{
-                  addToCart()
-                }} className="viewBtn">Add to Cart</button>
+                <button
+                  onClick={() => {
+                    addToCart();
+                    setShowModal(false);
+                    if (quantity > 0 && colorName) {
+                      toast.success(
+                        "Mahsulot karzinkaga muvaffaqiyatli qo'shildi!"
+                      );
+                    } else {
+                      toast.error("Tanlanmagan xususiyat bor!");
+                    }
+                  }}
+                  className="viewBtn"
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>

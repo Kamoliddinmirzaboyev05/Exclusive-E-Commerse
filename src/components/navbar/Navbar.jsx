@@ -11,6 +11,7 @@ import { CiLogout, CiStar } from "react-icons/ci";
 import { LuShoppingBag } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa";
 import { Skeleton } from "@mui/material";
+import { link } from "../../config";
 function Navbar({ userInfo, getWishlist, likedProducts }) {
   const [til, setAge] = React.useState("");
   const [showModal, setShowModal] = useState(false);
@@ -28,6 +29,36 @@ function Navbar({ userInfo, getWishlist, likedProducts }) {
   useEffect(() => {
     getWishlist();
   }, [likedProducts]);
+
+  // Getcart products function
+
+  const [cartProducts, setCartProducts] = useState(null);
+  const getCartProducts = () => {
+    const myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("token")}`
+    );
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(`${link}/order/cart-items/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        
+        setCartProducts(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    getCartProducts();
+  }, [cartProducts]);
 
   return (
     <div className="navbar">
@@ -126,8 +157,9 @@ function Navbar({ userInfo, getWishlist, likedProducts }) {
               </Link>
               <Link to={"/cart"}>
                 <button>
-                  <p className="productsLength">0</p>
-
+                  <p className="productsLength">
+                    {cartProducts?.cart_items.length}
+                  </p>
                   <i className="fa fa-shopping-cart"></i>
                 </button>
               </Link>
