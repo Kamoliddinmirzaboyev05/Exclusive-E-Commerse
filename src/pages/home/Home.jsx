@@ -18,7 +18,7 @@ import { link } from "../../config";
 import { Card, CardContent, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 
-function Home({ products, likedProducts, getData, getWishlist }) {
+function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
   const [categories, setCategories] = useState(null);
   const [productCount, setProductCount] = useState(4);
   const [showModal, setShowModal] = useState(false);
@@ -38,8 +38,10 @@ function Home({ products, likedProducts, getData, getWishlist }) {
       method: "GET",
       redirect: "follow",
     };
-
-    fetch(`${link}/product/categories/`, requestOptions)
+    fetch(
+      "https://ecommercev01.pythonanywhere.com/product/categories/",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
         setCategories(result);
@@ -49,16 +51,25 @@ function Home({ products, likedProducts, getData, getWishlist }) {
 
   // getOneProductFunction
   const getOneProduct = () => {
+    if (!productId) {
+      console.error("Error: productId is missing!");
+      return;
+    }
     const requestOptions = {
       method: "GET",
       redirect: "follow",
     };
     fetch(`${link}/product/detail/?product_id=${productId}`, requestOptions)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+      })
       .then((result) => {
         setOneProductData(result);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error("Fetch error:", error));
   };
 
   useEffect(() => {
@@ -130,7 +141,6 @@ function Home({ products, likedProducts, getData, getWishlist }) {
     const timer = setInterval(() => {
       const newTime = calculateTimeLeft();
       setTimeLeft(newTime);
-      console.log("salom");
     }, [1000]);
 
     return () => clearInterval(timer);
@@ -141,10 +151,6 @@ function Home({ products, likedProducts, getData, getWishlist }) {
         <div className="hero">
           <div className="container">
             <div className="heroFilter">
-              <p>
-                {timeLeft.days} kun {timeLeft.hours} soat {timeLeft.minutes}{" "}
-                daqiqa {timeLeft.seconds} soniya
-              </p>
               {categories?.map((category) => {
                 return (
                   <div key={category.id} className="row">
@@ -365,21 +371,16 @@ function Home({ products, likedProducts, getData, getWishlist }) {
                 <h2 className="sectionTitle">Flash Sales</h2>
                 <div className="timer">
                   <div className="value">
-                    {/* <p>
-                      {timeLeft.hours} soat {timeLeft.minutes} daqiqa{" "}
-                      {timeLeft.seconds} soniya
-                    </p> */}
                     <p>Days</p>
                     <h2>
-                      0
-                      {timeLeft.days < 10 ? timeLeft.days : "0" + timeLeft.days}
+                      0{timeLeft.days < 9 ? timeLeft.days : "0" + timeLeft.days}
                     </h2>
                   </div>
                   <p className="doubleDot">:</p>
                   <div className="value">
                     <p>Hours</p>
                     <h2>
-                      {timeLeft.hours > 10
+                      {timeLeft.hours > 9
                         ? timeLeft.hours
                         : "0" + timeLeft.hours}
                     </h2>
@@ -388,7 +389,7 @@ function Home({ products, likedProducts, getData, getWishlist }) {
                   <div className="value">
                     <p>Minutes</p>
                     <h2>
-                      {timeLeft.minutes > 10
+                      {timeLeft.minutes > 9
                         ? timeLeft.minutes
                         : "0" + timeLeft.minutes}
                     </h2>
@@ -397,7 +398,7 @@ function Home({ products, likedProducts, getData, getWishlist }) {
                   <div className="value">
                     <p>Seconds</p>
                     <h2>
-                      {timeLeft.seconds > 10
+                      {timeLeft.seconds > 9
                         ? timeLeft.seconds
                         : "0" + timeLeft.seconds}
                     </h2>
@@ -420,6 +421,7 @@ function Home({ products, likedProducts, getData, getWishlist }) {
                 if (index < productCount) {
                   return (
                     <ProductCard
+                      userInfo={userInfo}
                       setProductId={setProductId}
                       setShowModal={setShowModal}
                       key={product.id}

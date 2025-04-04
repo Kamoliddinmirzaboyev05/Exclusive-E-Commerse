@@ -39,6 +39,40 @@ function OneProduct() {
   useEffect(() => {
     getOneProduct();
   }, []);
+
+  // Add to Cart function
+
+  const addToCart = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("token")}`
+    );
+
+    const raw = JSON.stringify({
+      product_id: id,
+      quantity: productCount,
+      properties: {
+        color: colorName,
+        ...(sizeVal !== null && { size: sizeVal }),
+      },
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`${link}/order/add-to-cart/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        toast.success(result);
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="oneProduct">
       <main>
@@ -154,10 +188,11 @@ function OneProduct() {
                                 oneProductData?.properties?.color[index],
                             }}
                             onClick={() => {
-                              setProductColor("red");
+                              setProductColor(oneProductData?.properties?.color[index]);
                             }}
                             className={
-                              productColor == "red"
+                              productColor ==
+                              oneProductData.properties.color[index]
                                 ? "color active redColor"
                                 : "color redColor"
                             }
@@ -214,7 +249,7 @@ function OneProduct() {
                       +
                     </button>
                   </div>
-                  <button className="buyNowBtn ">Buy Now</button>
+                  <button className="buyNowBtn ">Add to Cart</button>
                   <button
                     onClick={() => {
                       setProductLiked(!productLiked);

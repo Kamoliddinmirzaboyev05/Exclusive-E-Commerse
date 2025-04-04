@@ -26,19 +26,21 @@ function Navbar({ userInfo, getWishlist, setSearchVal, likedProducts }) {
       : setShowModal(true);
   };
 
-  useEffect(() => {
-    getWishlist();
-  }, [likedProducts]);
+  // useEffect(() => {
+  //   getWishlist();
+  // }, [likedProducts]);
 
   // Getcart products function
 
   const [cartProducts, setCartProducts] = useState(null);
   const getCartProducts = () => {
     const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      `Bearer ${localStorage.getItem("token")}`
-    );
+    if (localStorage.getItem("token")) {
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("token")}`
+      );
+    }
 
     const requestOptions = {
       method: "GET",
@@ -56,7 +58,7 @@ function Navbar({ userInfo, getWishlist, setSearchVal, likedProducts }) {
 
   useEffect(() => {
     getCartProducts();
-  }, [cartProducts]);
+  }, []);
 
   return (
     <div className="navbar">
@@ -114,7 +116,6 @@ function Navbar({ userInfo, getWishlist, setSearchVal, likedProducts }) {
                 </div>
                 <div
                   onClick={() => {
-                    setIsLogin(false);
                     setShowModal(false);
                     localStorage.setItem("token", "");
                   }}
@@ -152,15 +153,19 @@ function Navbar({ userInfo, getWishlist, setSearchVal, likedProducts }) {
               </form>
               <Link to={"/wishlist"}>
                 <button>
-                  <p className="productsLength">{likedProducts?.length}</p>
+                  {userInfo?.id && (
+                    <p className="productsLength">{likedProducts?.length}</p>
+                  )}
                   <i className="fa-regular fa-heart"></i>
                 </button>
               </Link>
               <Link to={"/cart"}>
                 <button>
-                  <p className="productsLength">
-                    {cartProducts?.cart_items.length}
-                  </p>
+                  {userInfo?.id && (
+                    <p className="productsLength">
+                      {cartProducts?.cart_items?.length}
+                    </p>
+                  )}
                   <i className="fa fa-shopping-cart"></i>
                 </button>
               </Link>

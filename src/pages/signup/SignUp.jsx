@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SignUp.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from "react-toastify";
@@ -9,7 +9,12 @@ function SignUp() {
   const [userPassword, setUserPassword] = useState(null);
 
   const navigate = useNavigate();
-
+  useEffect(() => {
+    window.scrollTo({
+      top: "0",
+      // behavior: "smooth",
+    });
+  }, []);
   const newUser = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -27,10 +32,7 @@ function SignUp() {
       redirect: "follow",
     };
 
-    fetch(
-      `${link}/user/register/`,
-      requestOptions
-    )
+    fetch(`${link}/user/register/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
@@ -49,7 +51,6 @@ function SignUp() {
   return (
     <>
       <div className="signUp">
-       
         <div className="container">
           <div className="signUpImg">
             <img src="/Side Image (1).png" alt="" />

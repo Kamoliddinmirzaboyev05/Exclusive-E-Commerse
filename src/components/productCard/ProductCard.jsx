@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ProductCard.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { link } from "../../config";
 import { toast } from "react-toastify";
 function ProductCard({
@@ -8,6 +8,7 @@ function ProductCard({
   setProductId,
   setShowModal,
   getData,
+  userInfo,
   getWishlist,
   liked,
 }) {
@@ -33,7 +34,7 @@ function ProductCard({
       })
       .catch((error) => console.error(error));
   };
-
+  const navigate = useNavigate();
   // Delete from liked function
   const deleteFromLiked = (id) => {
     const myHeaders = new Headers();
@@ -55,6 +56,7 @@ function ProductCard({
       .then((response) => response.text())
       .then((result) => {
         toast.info("Maxsulot istaklar ro'yhatidan olib tashlandi!");
+        window.location.reload();
       })
       .catch((error) => console.error(error));
   };
@@ -75,8 +77,13 @@ function ProductCard({
             <>
               <div
                 onClick={(e) => {
-                  e.preventDefault();
-                  addToLiked(product.id);
+                  if (userInfo.id) {
+                    e.preventDefault();
+                    addToLiked(product.id);
+                  } else {
+                    e.preventDefault();
+                    navigate("/signup");
+                  }
                 }}
                 className="hoverBtn heartBtn"
               >
@@ -98,8 +105,6 @@ function ProductCard({
               onClick={(e) => {
                 e.preventDefault();
                 deleteFromLiked(product.id);
-                console.log("salom");
-
                 getWishlist();
               }}
               className="deleteBtn hoverBtn"
@@ -115,10 +120,15 @@ function ProductCard({
           </div>
           <button
             onClick={(e) => {
-              setProductId(product?.id);
-              e.preventDefault();
-              setShowModal(true);
-              getWishlist();
+              if (userInfo.id) {
+                setProductId(product?.id);
+                e.preventDefault();
+                setShowModal(true);
+                getWishlist();
+              } else {
+                e.preventDefault();
+                navigate("/signup");
+              }
             }}
             className={liked ? "addCartBtn activeAddCart" : "addCartBtn"}
           >

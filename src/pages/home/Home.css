@@ -78,6 +78,9 @@
 .selectColors .color.active {
   box-shadow: 0px 0px 10px 2px #DB4444;
 }
+.flashSales .sectionTitle{
+  padding-bottom: 0;
+}
 .flashSales .cartModalBack .selectColor {
   display: block !important;
   border-bottom: 3px solid #b3b3b3;

@@ -10,9 +10,17 @@
   align-items: center;
   gap: 400px;
 }
+nav {
+  overflow: visible;
+  position: relative;
+}
 .mainNav {
   border-bottom: 0.5px solid #b3b3b3;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 99;
+  top: 0;
 }
 
 .hidden {
@@ -30,7 +38,7 @@
   top: 0px;
   left: 0px;
 }
-.navBtns a{
+.navBtns a {
   position: relative;
 }
 .productsLength {

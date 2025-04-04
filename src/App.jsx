@@ -43,9 +43,6 @@ function App() {
       })
       .catch((error) => console.error(error));
   };
-  useEffect(() => {
-    getUserData();
-  }, []);
 
   // Getdata function
   const getData = () => {
@@ -75,11 +72,15 @@ function App() {
 
   // getmywishlist function
   const getWishlist = () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token mavjud emas. Login qilish kerak.");
+      return;
+    }
+
     const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      `Bearer ${localStorage.getItem("token")}`
-    );
+    myHeaders.append("Authorization", `Bearer ${token}`);
+    myHeaders.append("Content-Type", "application/json");
 
     const requestOptions = {
       method: "GET",
@@ -88,13 +89,21 @@ function App() {
     };
 
     fetch(`${link}/action/my-wishlist/`, requestOptions)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((result) => {
         setLikedProducts(result);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error("Error:", error));
   };
-
+  useEffect(() => {
+    getUserData();
+    getWishlist();
+  }, []);
   return (
     <BrowserRouter>
       <ToastContainer
@@ -125,6 +134,7 @@ function App() {
               products={products}
               getData={getData}
               getWishlist={getWishlist}
+              userInfo={userInfo}
             />
           }
         />
