@@ -125,7 +125,7 @@ function Wishlist() {
                             
                         </div>
                     </div>
-                    <div className="Just">
+                    {/* <div className="Just">
                         <div className="justTitle">
                             <div className="sectionType">
                                 <span className="rec"></span>
@@ -244,7 +244,7 @@ function Wishlist() {
                             </div>
                             
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>
