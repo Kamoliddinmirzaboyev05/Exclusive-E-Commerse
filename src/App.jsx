@@ -156,7 +156,10 @@ function App() {
 
         <Route path="/signin" element={<SignIn getUserData={getUserData} />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/oneProduct/:id" element={<OneProduct />} />
+        <Route
+          path="/oneProduct/:id"
+          element={<OneProduct userInfo={userInfo} />}
+        />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />

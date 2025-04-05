@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./OneProduct.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { link } from "../../config";
-function OneProduct() {
+function OneProduct({ userInfo }) {
   const { id } = useParams();
   const [oneProductData, setOneProductData] = useState(null);
   const [productSize, setProductSize] = useState("M");
@@ -12,8 +12,8 @@ function OneProduct() {
   const [descrLength, setDescrLength] = useState(150);
   const [mainImgOrder, setMainImgOrder] = useState(0);
 
+  const navigate = useNavigate();
   // getOneProduct function
-
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -54,8 +54,8 @@ function OneProduct() {
       product_id: id,
       quantity: productCount,
       properties: {
-        color: colorName,
-        ...(sizeVal !== null && { size: sizeVal }),
+        color: productColor,
+        ...(productSize !== null && { size: productSize }),
       },
     });
 
@@ -188,7 +188,9 @@ function OneProduct() {
                                 oneProductData?.properties?.color[index],
                             }}
                             onClick={() => {
-                              setProductColor(oneProductData?.properties?.color[index]);
+                              setProductColor(
+                                oneProductData?.properties?.color[index]
+                              );
                             }}
                             className={
                               productColor ==
@@ -249,7 +251,19 @@ function OneProduct() {
                       +
                     </button>
                   </div>
-                  <button className="buyNowBtn ">Add to Cart</button>
+                  <button
+                    onClick={() => {
+                      if (userInfo.id) {
+                        // productSize
+                        addToCart();
+                      } else {
+                        navigate("/signup");
+                      }
+                    }}
+                    className="buyNowBtn "
+                  >
+                    Add to Cart
+                  </button>
                   <button
                     onClick={() => {
                       setProductLiked(!productLiked);
