@@ -197,6 +197,7 @@ function Home({ products, likedProducts, userInfo, getData, getWishlist }) {
                 <SwiperSlide>
                   <div className="heroSlide">
                     <img src="/heroimg.png" alt="" />
+                    sarvarlkjjjjjjjjjjjjjjjjjjjjjjjjjjewwwwwwwwwwwwwwwwwwwwwwwww
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
