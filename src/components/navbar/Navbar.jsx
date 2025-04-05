@@ -1,18 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
-function Navbar() {
+import { CiLogout, CiStar } from "react-icons/ci";
+import { LuShoppingBag } from "react-icons/lu";
+import { FaRegUser } from "react-icons/fa";
+import { Skeleton } from "@mui/material";
+import { link } from "../../config";
+function Navbar({ userInfo, getWishlist, setSearchVal, likedProducts }) {
   const [til, setAge] = React.useState("");
-
+  const [showModal, setShowModal] = useState(false);
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
+  const navigate = useNavigate();
+  const closeModal = (e) => {
+    !e.target.classList.contains("navModal")
+      ? setShowModal(null)
+      : setShowModal(true);
+  };
+
+  // useEffect(() => {
+  //   getWishlist();
+  // }, [likedProducts]);
+
+  // Getcart products function
+
+  const [cartProducts, setCartProducts] = useState(null);
+  const getCartProducts = () => {
+    const myHeaders = new Headers();
+    if (localStorage.getItem("token")) {
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("token")}`
+      );
+    }
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(`${link}/order/cart-items/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setCartProducts(result);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    getCartProducts();
+  }, []);
+
   return (
     <div className="navbar">
       <nav>
@@ -42,6 +89,43 @@ function Navbar() {
         </div>
         <div className="mainNav">
           <div className="container">
+            <div
+              onClick={(e) => {
+                closeModal(e);
+              }}
+              className={showModal ? "modalBack" : "hidden"}
+            >
+              <div className={showModal ? "navModal" : "hidden"}>
+                <Link
+                  onClick={() => {
+                    setShowModal(false);
+                  }}
+                  to={"account"}
+                  className="modalItem"
+                >
+                  <FaRegUser />
+                  <p>Manage My Account</p>
+                </Link>
+                <div className="modalItem">
+                  <LuShoppingBag />
+                  <p>My Order</p>
+                </div>
+                <div className="modalItem">
+                  <CiStar />
+                  <p>My Reviews</p>
+                </div>
+                <div
+                  onClick={() => {
+                    setShowModal(false);
+                    localStorage.setItem("token", "");
+                  }}
+                  className="modalItem"
+                >
+                  <CiLogout />
+                  <p>Logout</p>
+                </div>
+              </div>
+            </div>
             <Link to={"/"} className="logo">
               <h1>Exclusive</h1>
             </Link>
@@ -53,26 +137,53 @@ function Navbar() {
             </div>
             <div className="navBtns">
               <form action="#">
-                <input type="text" placeholder="What are you looking for?" />
+                <input
+                  onFocus={() => {
+                    navigate("/search");
+                  }}
+                  onChange={(e) => {
+                    setSearchVal(e.target.value);
+                  }}
+                  type="text"
+                  placeholder="What are you looking for?"
+                />
                 <button>
                   <i className="fas fa-search"></i>
                 </button>
               </form>
               <Link to={"/wishlist"}>
                 <button>
+                  {userInfo?.id && (
+                    <p className="productsLength">{likedProducts?.length}</p>
+                  )}
                   <i className="fa-regular fa-heart"></i>
                 </button>
               </Link>
               <Link to={"/cart"}>
                 <button>
+                  {userInfo?.id && (
+                    <p className="productsLength">
+                      {cartProducts?.cart_items?.length}
+                    </p>
+                  )}
                   <i className="fa fa-shopping-cart"></i>
                 </button>
               </Link>
-              <Link to={"/account"} >
-                <button>
+
+              {userInfo?.id && (
+                <button
+                  onClick={() => {
+                    setShowModal(true);
+                  }}
+                >
                   <AiOutlineUser />
                 </button>
-              </Link>
+              )}
+              {!userInfo && (
+                <Box sx={{ width: 15 }}>
+                  <Skeleton variant="h1" width={25} height={25} />
+                </Box>
+              )}
             </div>
           </div>
         </div>

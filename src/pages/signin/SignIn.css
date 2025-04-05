@@ -1,10 +1,10 @@
-.signIpText {
+.signInText {
     display: flex;
     flex-direction: column;
     width: 370px;
 }
 
-.signIp .container {
+.signIn .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -12,36 +12,36 @@
     padding-bottom: 260px;
 }
 
-.signIp {
+.signIn {
     position: relative;
 
 }
 
-.signIpImg {
+.signInImg {
     position: absolute;
     left: 0px;
 }
 
-.signIpText h1 {
+.signInText h1 {
     font-size: 36px;
     font-weight: 500;
     padding-bottom: 24px;
 }
 
-.signIpText p {
+.signInText p {
     font-size: 16px;
     font-weight: 400;
     padding-bottom: 48px;
 }
 
-.signIpText input {
+.signInText input {
     border: none;
     outline: none;
     border-bottom: 1px solid rgba(0, 0, 0, 1);
     padding: 8px 0px;
 }
 
-.signIpText button {
+.signInText button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,14 +49,14 @@
     gap: 10px;
 }
 
-.signIpText h5 {
+.signInText h5 {
     text-align: center;
     padding-top: 32px;
     font-size: 16px;
     font-weight: 400;
 }
 
-.signIpText .Account {
+.signInText .Account {
     padding: 16px 48px;
     background-color: #DB4444;
     border: none;
@@ -92,20 +92,20 @@
 button{
     cursor: pointer;
 }
-.signIp a{
+.signIn a{
     color: red;
     text-decoration: none;
 }
-.signIp {
+.signIn {
     position: relative;
 
 }
 
-.signIpImg {
+.signInImg {
     position: absolute;
     left: 0px;
 }
-.signIp .container {
+.signIn .container {
     display: flex;
     justify-content: space-between;
     align-items: center;

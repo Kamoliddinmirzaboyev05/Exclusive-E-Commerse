@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./OneProduct.css";
 import { useParams } from "react-router-dom";
+import { link } from "../../config";
 function OneProduct() {
   const { id } = useParams();
   const [oneProductData, setOneProductData] = useState(null);
@@ -9,6 +10,8 @@ function OneProduct() {
   const [productLiked, setProductLiked] = useState(false);
   const [productColor, setProductColor] = useState("blue");
   const [descrLength, setDescrLength] = useState(150);
+  const [mainImgOrder, setMainImgOrder] = useState(0);
+
   // getOneProduct function
 
   useEffect(() => {
@@ -23,22 +26,53 @@ function OneProduct() {
       redirect: "follow",
     };
 
-    fetch(
-      `https://ecommercev01.pythonanywhere.com/product/detail/?product_id=${id}`,
-      requestOptions
-    )
+    fetch(`${link}/product/detail/?product_id=${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
+        console.log(result);
+
         setOneProductData(result);
-        
       })
       .catch((error) => console.error(error));
   };
-  console.log(oneProductData);
 
   useEffect(() => {
     getOneProduct();
   }, []);
+
+  // Add to Cart function
+
+  const addToCart = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${localStorage.getItem("token")}`
+    );
+
+    const raw = JSON.stringify({
+      product_id: id,
+      quantity: productCount,
+      properties: {
+        color: colorName,
+        ...(sizeVal !== null && { size: sizeVal }),
+      },
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`${link}/order/add-to-cart/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        toast.success(result);
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="oneProduct">
       <main>
@@ -54,25 +88,54 @@ function OneProduct() {
             <div className="mainBlock">
               <div className="leftSide">
                 <div className="itemImgs">
-                  <div className="itemImg">
-                    <img  src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[0]?.file}`} alt="" />
+                  <div
+                    onClick={() => {
+                      setMainImgOrder(0);
+                    }}
+                    className="itemImg"
+                  >
+                    <img
+                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[0]?.file}`}
+                      alt=""
+                    />
                   </div>
-                  <div className="itemImg">
+                  <div
+                    onClick={() => {
+                      setMainImgOrder(1);
+                    }}
+                    className="itemImg"
+                  >
                     <img
                       src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[1]?.file}`}
                       alt=""
                     />
                   </div>
-                  <div className="itemImg">
-                    <img  src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[2]?.file}`} alt="" />
+                  <div
+                    onClick={() => {
+                      setMainImgOrder(2);
+                    }}
+                    className="itemImg"
+                  >
+                    <img
+                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[2]?.file}`}
+                      alt=""
+                    />
                   </div>
-                  <div className="itemImg">
-                    <img  src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[3]?.file}`} alt="" />
+                  <div
+                    onClick={() => {
+                      setMainImgOrder(3);
+                    }}
+                    className="itemImg"
+                  >
+                    <img
+                      src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[3]?.file}`}
+                      alt=""
+                    />
                   </div>
                 </div>
                 <div className="mainImg">
                   <img
-                    src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[0]?.file}`}
+                    src={`https://ecommercev01.pythonanywhere.com/${oneProductData?.pictures[mainImgOrder]?.file}`}
                     alt=""
                   />
                 </div>
@@ -113,76 +176,59 @@ function OneProduct() {
                     Read less
                   </button>
                 </p>
-                <div className="colours">
-                  <p>Colours: </p>
-                  <div className="selectColor" >
-                    <div
-                      onClick={() => {
-                        setProductColor("blue");
-                      }}
-                      className={
-                        productColor == "blue"
-                          ? "color active blueColor"
-                          : "color blueColor"
-                      }
-                    ></div>
-                    <div
-                      onClick={() => {
-                        setProductColor("red");
-                      }}
-                      className={
-                        productColor == "red"
-                          ? "color active redColor"
-                          : "color redColor"
-                      }
-                    ></div>
+                {oneProductData?.properties?.color && (
+                  <div className="colours">
+                    <p>Colours: </p>
+                    <div className="selectColor">
+                      {oneProductData?.properties?.color.map((item, index) => {
+                        return (
+                          <div
+                            style={{
+                              backgroundColor:
+                                oneProductData?.properties?.color[index],
+                            }}
+                            onClick={() => {
+                              setProductColor(oneProductData?.properties?.color[index]);
+                            }}
+                            className={
+                              productColor ==
+                              oneProductData.properties.color[index]
+                                ? "color active redColor"
+                                : "color redColor"
+                            }
+                          ></div>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-                <div className="size">
-                  <p>Size: </p>
-                  <div className="selectSize">
-                    <span
-                      onClick={() => {
-                        setProductSize("XS");
-                      }}
-                      className={productSize == "XS" ? "active" : "span"}
-                    >
-                      <p>XS</p>
-                    </span>
-                    <span
-                      onClick={() => {
-                        setProductSize("S");
-                      }}
-                      className={productSize == "S" ? "active" : "span"}
-                    >
-                      <p>S</p>
-                    </span>
-                    <span
-                      onClick={() => {
-                        setProductSize("M");
-                      }}
-                      className={productSize == "M" ? "active" : "span"}
-                    >
-                      <p>M</p>
-                    </span>
-                    <span
-                      onClick={() => {
-                        setProductSize("L");
-                      }}
-                      className={productSize == "L" ? "active" : "span"}
-                    >
-                      <p>L</p>
-                    </span>
-                    <span
-                      onClick={() => {
-                        setProductSize("XL");
-                      }}
-                      className={productSize == "XL" ? "active" : "span"}
-                    >
-                      <p>XL</p>
-                    </span>
+                )}
+                {oneProductData?.properties?.size && (
+                  <div className="size">
+                    <p>Size: </p>
+                    <div className="selectSize">
+                      {oneProductData.properties.size.map((size, index) => {
+                        return (
+                          <span
+                            onClick={() => {
+                              setProductSize(
+                                oneProductData.properties.size[index]
+                              );
+                            }}
+                            className={
+                              productSize ==
+                              oneProductData.properties.size[index]
+                                ? "active"
+                                : "span"
+                            }
+                          >
+                            <p>{oneProductData?.properties.size[index]}</p>
+                          </span>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
+                )}
+
                 <div className="mainBtns">
                   <div className="counter">
                     <button
@@ -203,7 +249,7 @@ function OneProduct() {
                       +
                     </button>
                   </div>
-                  <button className="buyNowBtn ">Buy Now</button>
+                  <button className="buyNowBtn ">Add to Cart</button>
                   <button
                     onClick={() => {
                       setProductLiked(!productLiked);
